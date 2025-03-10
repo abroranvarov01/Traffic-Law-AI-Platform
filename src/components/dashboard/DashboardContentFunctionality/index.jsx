@@ -497,11 +497,11 @@ const DashboardContentFunctionality = (props) => {
                                 </ReactMarkdown>
                               ) : (
                                 <Link
-                                  href={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`} // Full-size image URL
+                                  href={`${process.env.NEXT_PUBLIC_APP_API_URL}/images/${item.file_url}`} // Full-size image URL
                                   data-fancybox="gallery"
                                 >
                                   <Image
-                                    src={`${process.env.NEXT_PUBLIC_APP_API_URL}/image/${item.file_url}`} // Thumbnail image URL
+                                    src={`${process.env.NEXT_PUBLIC_APP_API_URL}/images/${item.file_url}`} // Thumbnail image URL
                                     alt={`Image ${index + 1}`}
                                     width={300}
                                     height={300}
