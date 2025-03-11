@@ -5,7 +5,7 @@ import { useLocale } from "next-intl";
 import { useCookies } from "react-cookie";
 import { Languages } from "lucide-react";
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ colorWhite }: { colorWhite?: boolean }) => {
   const router = useRouter();
   const pathname = usePathname() || "/";
   const locale = useLocale();
@@ -32,7 +32,9 @@ const LanguageSwitcher = () => {
   return (
     <div className="language-switcher">
       <div
-        className={`sideBarLink ${theme === "light" ? "light" : ""} `}
+        className={`sideBarLink ${theme === "light" ? "light" : ""}${
+          colorWhite ? "colorWhite" : ""
+        }`}
         onClick={handleLanguageChange}
         role="button"
         aria-label={`Switch to ${locale === "uz" ? "Russian" : "Uzbek"}`}

@@ -31,7 +31,6 @@ const SideBar = () => {
   const [cookiesTheme] = useCookies(["theme"]);
   const [theme, setTheme] = useState("dark");
   const locale = useLocale();
-
   useEffect(() => {
     setTheme(cookiesTheme.theme || "dark");
   }, [cookiesTheme]);

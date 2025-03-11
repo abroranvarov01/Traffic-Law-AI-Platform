@@ -9,6 +9,7 @@ import { useTranslations } from "next-intl";
 import { useMainContext } from "@/providers/contextProvider";
 import axios from "axios";
 import { History } from "lucide-react";
+import { toast } from "react-toastify";
 
 const HistorySideBar = (props) => {
   const t = useTranslations("Dashboard");
@@ -72,7 +73,7 @@ const HistorySideBar = (props) => {
       })
       .then(() => handleGetChats())
       .catch((err) => {
-        console.error(err);
+        toast.error(err.response.data.message);
       });
   };
 

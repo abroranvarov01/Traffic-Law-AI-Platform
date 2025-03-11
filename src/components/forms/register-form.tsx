@@ -73,6 +73,11 @@ export function RegistrationForm({
       return;
     }
 
+    if (formElements.password.value.length < 8) {
+      toast.error(t("passwordTooShort"));
+      return;
+    }
+
     axios
       .post(process.env.NEXT_PUBLIC_APP_API_URL + "/auth/register", {
         fullname: formElements.name.value,
@@ -164,7 +169,7 @@ export function RegistrationForm({
                         variant="outline"
                         className="authFormLang w-full bg-black border-[#27272A] text-white hover:bg-[#27272A] hover:text-white"
                       >
-                        <LanguageSwitcher />
+                        <LanguageSwitcher colorWhite={true} />
                       </Button>
                     </div>
                     <div className="grid gap-4">
@@ -220,7 +225,9 @@ export function RegistrationForm({
                       </div>
                       <div className="grid gap-2">
                         <div className="flex items-center text-white">
-                          <Label htmlFor="password">{t("passwordRepeat")}</Label>
+                          <Label htmlFor="password">
+                            {t("passwordRepeat")}
+                          </Label>
                         </div>
                         <div className="relative">
                           <Input

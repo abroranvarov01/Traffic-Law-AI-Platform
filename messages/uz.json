@@ -42,7 +42,8 @@
     "confirmCode2": "Tasdiqlash kodi",
     "confirmCode": "Telefon raqamingizga tasdiqlash kodi yuborildi!",
     "authError": "Bunday foydalanuvchi allaqachon ro‘yxatdan o‘tgan!",
-    "send": "Yuborish"
+    "send": "Yuborish",
+    "codeSMS": "Tasdiqlash kodi"
   },
   "Dashboard": {
     "errorMessage": "Xato yuz berdi. Yana urinib ko'ring.",

@@ -128,7 +128,7 @@ export const DownloadButton = ({
                 </div>
                 <div className="text-left flex-1 min-w-0">
                   <div className="text-[11px] font-medium text-gray-200 truncate">
-                    PDF 
+                    PDF
                   </div>
                 </div>
               </button>

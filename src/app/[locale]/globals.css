@@ -44,6 +44,7 @@ a {
 
 @layer base {
   :root {
+    --copy-item: 0, 0%, 18.43%;
     --hover-background: 0 0% 14.51%;
     --user-info-icon-text: 0 0% 100%;
     --user-info-button: 240 1.69% 23.14%;
@@ -94,6 +95,7 @@ a {
     --chart-5: 340 75% 55%;
   }
   .light {
+    --copy-item: 0, 0%, 100%;
     --hover-background: 0 0% 86.67%;
     --user-info-icon-text: 221.21 83.19% 53.33%;
     --user-info-button: 220.54 100% 92.75%;

@@ -82,11 +82,6 @@ export function LoginForm({
     const rawPhone = phone.replace(/\D/g, "");
     const password = formElements.password.value;
 
-    // if (password.length < 8) {
-    //   toast.error(t("passwordTooShort"));
-    //   return;
-    // }
-
     axios
       .post(process.env.NEXT_PUBLIC_APP_API_URL + "/auth/login", {
         phone_number: "+" + rawPhone,
@@ -150,7 +145,7 @@ export function LoginForm({
                         variant="outline"
                         className="authFormLang w-full bg-black border-[#27272A] text-white hover:bg-[#27272A] hover:text-white"
                       >
-                        <LanguageSwitcher />
+                        <LanguageSwitcher colorWhite={true} />
                       </Button>
                     </div>
                     {/* <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border after:text-[#27272A]"></div> */}

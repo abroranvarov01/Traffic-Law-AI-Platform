@@ -64,14 +64,23 @@ export function ResetPasswordForm({
     setPhone(formatPhoneNumber("+" + inputValue));
   };
 
-  const signUp = (event: React.FormEvent<SignInFormElement>) => {
+  const resetPassword = (event: React.FormEvent<SignInFormElement>) => {
     event.preventDefault();
     const formElements = event.currentTarget.elements as FormElements;
+    const rawPhone = phone.replace(/\D/g, "");
+
     if (phone && !havePhoone) {
-      setHavePhone(true);
+      axios
+        .post(process.env.NEXT_PUBLIC_APP_API_URL + "/auth/send-phone-code", {
+          phone_number: "+" + rawPhone,
+        })
+        .then((res) => {
+          if (res.status === 201) {
+            setHavePhone(true);
+          }
+        });
       return;
     }
-    const rawPhone = phone.replace(/\D/g, "");
 
     if (formElements.password.value !== formElements.passwordRepeat.value) {
       toast.error(t("dontMatch"));
@@ -81,10 +90,11 @@ export function ResetPasswordForm({
     axios
       .post(process.env.NEXT_PUBLIC_APP_API_URL + "/auth/restore-password", {
         phone_number: "+" + rawPhone,
+        password: formElements.password.value,
+        code: formElements.code.value,
       })
-      .then((res) => {
-        setCookie("secretToken", res.data.access_token);
-        setOpen(true);
+      .then(() => {
+        router.push("/signin");
       })
       .catch((err) => {
         console.error(err);
@@ -93,41 +103,9 @@ export function ResetPasswordForm({
       });
   };
 
-  const checkPhoneSmsCode = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    code: string
-  ) => {
-    event.preventDefault();
-    axios
-      .post(
-        process.env.NEXT_PUBLIC_APP_API_URL + "/auth/verify-phone-code",
-        {
-          code: code,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${cookies.secretToken}`,
-          },
-        }
-      )
-      .then(() => {
-        router.push("/dashboard");
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Noto'g'ri tasdiqlash kodi!");
-      });
-  };
-  console.log("phone", phone);
-
   return (
     <>
       <ToastContainer />
-      <SmsCodeModal
-        setOpen={setOpen}
-        open={open}
-        checkPhoneSmsCode={checkPhoneSmsCode}
-      />
       <div
         style={{
           width: "100%",
@@ -158,7 +136,7 @@ export function ResetPasswordForm({
               <CardContent>
                 <form
                   onSubmit={(event: React.FormEvent<SignInFormElement>) => {
-                    signUp(event);
+                    resetPassword(event);
                   }}
                 >
                   <div className="grid gap-4">
@@ -168,7 +146,7 @@ export function ResetPasswordForm({
                         variant="outline"
                         className="authFormLang w-full bg-black border-[#27272A] text-white hover:bg-[#27272A] hover:text-white"
                       >
-                        <LanguageSwitcher />
+                        <LanguageSwitcher colorWhite={true} />
                       </Button>
                     </div>
                     <div className="grid gap-4">
@@ -187,9 +165,6 @@ export function ResetPasswordForm({
                           />
                         </div>
                       ) : (
-                        ""
-                      )}
-                      {havePhoone ? (
                         <div className="grid gap-4">
                           <div className="grid gap-2">
                             <div className="flex items-center text-white">
@@ -245,9 +220,19 @@ export function ResetPasswordForm({
                               </button>
                             </div>
                           </div>
+                          <div className="grid gap-2">
+                            <div className="flex items-center text-white">
+                              <Label htmlFor="code">{t("codeSMS")}</Label>
+                            </div>
+                            <div className="relative">
+                              <Input
+                                className="bg-black text-white border-[#27272A]"
+                                name="code"
+                                required
+                              />
+                            </div>
+                          </div>
                         </div>
-                      ) : (
-                        ""
                       )}
                       {havePhoone ? (
                         <Button

@@ -349,7 +349,7 @@
       left: -35px;
       top: 100%;
       transform: translateY(-100%);
-      background: #2f2f2f;
+      background: hsl(var(--copy-item));
       border-radius: 8px;
       display: flex;
       justify-content: center;
@@ -363,6 +363,11 @@
 
       &:hover {
         opacity: 1;
+      }
+
+      &.light {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px -1px rgba(0, 0, 0, 0.1);
       }
     }
 
@@ -381,7 +386,7 @@
 
   .copyItem {
     margin-top: 5px;
-    background: #2f2f2f;
+    background: hsl(var(--copy-item));
     border-radius: 8px;
     display: flex;
     justify-content: center;
@@ -399,7 +404,15 @@
     }
 
     &:hover {
-      background: hsl(var(--hover-text-input));
+      // background: hsl();
+    }
+    &.light {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+        0 1px 2px -1px rgba(0, 0, 0, 0.1);
+
+      & img {
+        filter: brightness(1) invert(1);
+      }
     }
   }
 
@@ -408,7 +421,6 @@
     margin-right: auto;
     font-size: 16px;
     border-radius: 20px 20px 20px 0;
-    line-height: 30px;
 
     & * {
       letter-spacing: 0.6px;

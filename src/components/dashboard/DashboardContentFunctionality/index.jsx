@@ -466,7 +466,9 @@ const DashboardContentFunctionality = (props) => {
                     {item.from_user ? (
                       <button
                         onClick={() => setMessage(item.message)}
-                        className="userMessageEdit"
+                        className={`userMessageEdit ${
+                          theme === "light" ? "light" : ""
+                        }`}
                       >
                         <Edit width={15} height={15} />
                       </button>
@@ -483,7 +485,7 @@ const DashboardContentFunctionality = (props) => {
                             height={15}
                           />
                         </div>
-                        <div>
+                        <div className="modelAnswerMsg">
                           {props.type === "text" && (
                             <ReactMarkdown>
                               {index === modelAnswer.length - 1
@@ -528,7 +530,11 @@ const DashboardContentFunctionality = (props) => {
                             <div className="copyContainer">
                               {props.type === "text" ? (
                                 <>
-                                  <div className="copyItem">
+                                  <div
+                                    className={`copyItem ${
+                                      theme === "light" ? "light" : ""
+                                    }`}
+                                  >
                                     <Image
                                       src="/images/copy.svg"
                                       alt="copy"
@@ -537,7 +543,11 @@ const DashboardContentFunctionality = (props) => {
                                       onClick={() => handleCopy(item.message)}
                                     />
                                   </div>
-                                  <div className="copyItem">
+                                  <div
+                                    className={`copyItem ${
+                                      theme === "light" ? "light" : ""
+                                    }`}
+                                  >
                                     <Image
                                       src="/images/download.svg"
                                       alt="download"
