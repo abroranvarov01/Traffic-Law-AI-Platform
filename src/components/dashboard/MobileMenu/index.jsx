@@ -10,15 +10,17 @@ import { useTranslations } from "next-intl";
 import { useLocale } from "next-intl";
 import LanguageSwitcher from "../LanguageSwitcher";
 import {
-  GalleryHorizontalEnd,
-  CopyPlus,
   Icon,
-  Lightbulb,
   ScanText,
   Images,
-  Mail,
+  Newspaper,
+  CirclePlus,
+  CircleHelp,
+  MessagesSquare,
+  Sparkles,
   LogOut,
 } from "lucide-react";
+
 import { featherText } from "@lucide/lab";
 import { planet } from "@lucide/lab";
 import ThemeToggle from "@/components/theme-toggle/theme-toggle";
@@ -78,9 +80,13 @@ const MobileMenu = () => {
           <Link
             className={`sideBarLink ${theme === "light" ? "light" : ""}`}
             href={"/dashboard"}
-            onClick={() => setOpenLogoMenu(!openLogoMenu)}
+            onClick={(e) => {
+              e.preventDefault(); 
+              setOpenLogoMenu(!openLogoMenu);
+              router.replace("/dashboard"); 
+            }}
           >
-            <CopyPlus color="white" size={25} />
+            <CirclePlus color="white" size={25} />
             <h3 className="sideBarLinkLabel">{t("newChat")}</h3>
             <div className="hoverEffectIcon">
               <Image
@@ -112,7 +118,7 @@ const MobileMenu = () => {
             href={"/questions"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            <Lightbulb color="white" size={25} />
+            <CircleHelp color="white" size={25} />
             <h3 className="sideBarLinkLabel">FAQ</h3>
             <div className="hoverEffectIcon">
               <Image
@@ -128,7 +134,7 @@ const MobileMenu = () => {
             href={"/articles"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            <Icon iconNode={featherText} color="white" size={25} />
+            <Newspaper color="white" size={25} />
             <h3 className="sideBarLinkLabel">{t("sideBar.articles")}</h3>
             <div className="hoverEffectIcon">
               <Image
@@ -147,7 +153,7 @@ const MobileMenu = () => {
             href={"/dashboard/text"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            <ScanText color="white" size={25} />
+            <MessagesSquare color="white" size={25} />
             <h3 className="sideBarLinkLabel">{t("sideBar.text")}</h3>
             <div className="hoverEffectIcon">
               <Image
@@ -163,7 +169,7 @@ const MobileMenu = () => {
             href={"/dashboard/image"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            <Images color="white" size={25} />
+            <Sparkles color="white" size={25} />
             <h3 className="sideBarLinkLabel">{t("sideBar.text2")}</h3>
             <div className="hoverEffectIcon imageGenerateIcon">
               <Image

@@ -26,6 +26,7 @@
   },
   "Register": {
     "createAccount": "O'z akauntingizni yaratish",
+    "resetAccount": "O'z akauntingizni tiklash",
     "registration": "Ro‘yxatdan o‘tish",
     "alreadyHaveAccount": "Sizda allaqachon hisob mavjudmi?",
     "login": "Kirish",

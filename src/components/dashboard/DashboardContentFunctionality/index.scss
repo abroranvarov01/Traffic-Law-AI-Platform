@@ -43,16 +43,15 @@
       transition: all 0.3s ease-out;
       border: none;
       outline: none;
+
       &::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          to right,
-          rgba(31, 114, 81, 0),
-          rgba(255, 255, 255, 0.07),
-          rgba(31, 114, 81, 0)
-        );
+        background: linear-gradient(to right,
+            rgba(31, 114, 81, 0),
+            rgba(255, 255, 255, 0.07),
+            rgba(31, 114, 81, 0));
         opacity: 0;
         transition: opacity 0.5s;
       }
@@ -66,12 +65,10 @@
           content: "";
           position: absolute;
           inset: 0;
-          background: linear-gradient(
-            to right,
-            rgba(31, 114, 81, 0),
-            rgba(255, 255, 255, 0.07),
-            rgba(31, 114, 81, 0)
-          );
+          background: linear-gradient(to right,
+              rgba(31, 114, 81, 0),
+              rgba(255, 255, 255, 0.07),
+              rgba(31, 114, 81, 0));
           opacity: 0;
           transition: opacity 0.5s;
         }
@@ -205,6 +202,7 @@
           justify-content: center;
           align-items: center;
           transition: 0.3s;
+
           img {
             width: 30px;
             height: 20px;
@@ -214,6 +212,7 @@
             }
           }
         }
+
         .languageSwitcherText {
           color: #b4b4b4;
           font-size: 14px;
@@ -231,12 +230,13 @@
       }
 
       .sendButton.light {
-        & > img {
+        &>img {
           filter: brightness(1) invert(1);
         }
       }
     }
   }
+
   .textForm.answer {
     border-radius: 20px 0 20px 20px;
     background: #1f7251;
@@ -343,7 +343,7 @@
     font-size: 16px;
     border-radius: 20px 20px 0 20px;
     letter-spacing: 0.6px;
-    margin-bottom: 25px;
+    margin-bottom: 0;
 
     .userMessageEdit {
       left: -35px;
@@ -365,6 +365,7 @@
         opacity: 1;
       }
     }
+
     &:hover {
       .userMessageEdit {
         opacity: 1;
@@ -644,10 +645,12 @@
     opacity: 1;
     visibility: visible;
   }
+
   .dashboardContentFunctionality .contentHeader {
     font-size: 26px;
     min-height: 40;
   }
+
   .dashboardContentFunctionality .helperButtons {
     gap: 8px;
   }
@@ -660,4 +663,12 @@
       min-height: 40px;
     }
   }
+}
+
+.fancybox__track {
+  height: 100dvh !important;
+}
+
+.fancybox__viewport {
+  width: 100dvw !important;
 }

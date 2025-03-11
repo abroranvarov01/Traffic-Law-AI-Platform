@@ -8,7 +8,7 @@ import { useMainContext } from "@/providers/contextProvider";
 import { Link } from "@/i18n/routing";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { ScanFace, UserCircleIcon } from "lucide-react";
+import { ScanFace, UserCircleIcon, User, History } from "lucide-react";
 
 const DashboardContentHeader = () => {
   const t = useTranslations("Dashboard");
@@ -30,6 +30,10 @@ const DashboardContentHeader = () => {
   }, [cookiesTheme]);
 
   React.useEffect(() => {
+    setActiveUser(cookies.isActiveUser);
+  }, [cookies]);
+
+  React.useEffect(() => {
     document.body.classList.toggle("light", theme === "light");
   }, [theme]);
   return (
@@ -44,13 +48,14 @@ const DashboardContentHeader = () => {
         }}
       >
         <div className={`logo ${theme === "light" ? "light" : ""}`}>
-          <Image
+          {/* <Image
             className="logoEnix"
             src="/images/history.svg"
             alt="Enix"
             width={100}
             height={100}
-          />
+          /> */}
+          <History className="logoEnix" color={`${theme === "light" ? "black" : "white"}`} />
           <Image
             className="logoChatEnixArrow"
             src="/images/chevron-down.svg"
@@ -108,7 +113,7 @@ const DashboardContentHeader = () => {
             width={100}
             height={100}
           />
-          <ScanFace className="userIcon" />
+          <User className="userIcon" />
         </div>
       </div>
     </div>

@@ -82,10 +82,10 @@ export function LoginForm({
     const rawPhone = phone.replace(/\D/g, "");
     const password = formElements.password.value;
 
-    if (password.length < 8) {
-      toast.error(t("passwordTooShort"));
-      return;
-    }
+    // if (password.length < 8) {
+    //   toast.error(t("passwordTooShort"));
+    //   return;
+    // }
 
     axios
       .post(process.env.NEXT_PUBLIC_APP_API_URL + "/auth/login", {
@@ -98,7 +98,7 @@ export function LoginForm({
           setCookie("isActiveUser", res.data.is_active, { path: "/" });
           setCookie("subscriptionDate", res.data.until, { path: "/" });
           setCookie("secretToken", token, { path: "/" });
-          router.push("dashboard");
+          router.push("/dashboard");
         } else {
           toast.error(t("errorGetToken"));
         }

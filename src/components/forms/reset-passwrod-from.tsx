@@ -79,10 +79,8 @@ export function ResetPasswordForm({
     }
 
     axios
-      .post(process.env.NEXT_PUBLIC_APP_API_URL + "/auth/register", {
-        fullname: formElements.name.value,
+      .post(process.env.NEXT_PUBLIC_APP_API_URL + "/auth/restore-password", {
         phone_number: "+" + rawPhone,
-        password: formElements.password.value,
       })
       .then((res) => {
         setCookie("secretToken", res.data.access_token);
@@ -155,7 +153,7 @@ export function ResetPasswordForm({
                 <CardTitle className="text-xl text-white">
                   {t("registration")}
                 </CardTitle>
-                <CardDescription>{t("createAccount")}</CardDescription>
+                <CardDescription>{t("resetAccount")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <form
@@ -192,7 +190,7 @@ export function ResetPasswordForm({
                         ""
                       )}
                       {havePhoone ? (
-                        <div>
+                        <div className="grid gap-4">
                           <div className="grid gap-2">
                             <div className="flex items-center text-white">
                               <Label htmlFor="password">{t("password")}</Label>

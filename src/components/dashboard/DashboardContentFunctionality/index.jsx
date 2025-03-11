@@ -33,6 +33,8 @@ import {
   ChartNoAxesCombined,
   Type,
   MoonStar,
+  Sparkles,
+  MessagesSquare
 } from "lucide-react";
 import { DownloadButton } from "../downloadFile/selectModal";
 
@@ -59,6 +61,7 @@ const renderButton = (buttonText, index) => (
 const DashboardContentFunctionality = (props) => {
   useEffect(() => {
     Fancybox.bind("[data-fancybox]", {
+      delegate: "a",
       infinite: true,
       transitionEffect: "zoom-in-out",
     });
@@ -195,7 +198,7 @@ const DashboardContentFunctionality = (props) => {
 
   const handleDownload = async (modelMessage, id) => {
     if (props.type === "image") {
-      const imageUrl = `${process.env.NEXT_PUBLIC_APP_API_URL}/image/${modelMessage}`;
+      const imageUrl = `${process.env.NEXT_PUBLIC_APP_API_URL}/images/${modelMessage}`;
 
       try {
         const response = await fetch(imageUrl);
@@ -625,7 +628,7 @@ const DashboardContentFunctionality = (props) => {
             <div
               className={`chosenModelIcon ${theme === "light" ? "light" : ""}`}
             >
-              <ScanText
+              <MessagesSquare
                 color={theme === "light" ? "black" : "white"}
                 size={25}
               />
@@ -644,7 +647,7 @@ const DashboardContentFunctionality = (props) => {
             <div
               className={`chosenModelIcon ${theme === "light" ? "light" : ""}`}
             >
-              <Images color={theme === "light" ? "black" : "white"} size={25} />
+              <Sparkles color={theme === "light" ? "black" : "white"} size={25} />
             </div>
             <div className="chosenModelText">{t("sideBar.text2")}</div>
           </motion.div>
@@ -664,7 +667,7 @@ const DashboardContentFunctionality = (props) => {
           {showAnswer && (
             <button
               className="newchat"
-              onClick={() => router.push("/dasboard/text")}
+              onClick={() => router.replace("/dashboard")}
             >
               <RefreshCw className="icon" />
               <span className="text">{t("newChat")}</span>
@@ -752,9 +755,9 @@ const DashboardContentFunctionality = (props) => {
                 />
               </motion.button>
             )}
-            <p className="absolute bottom-[17px] right-[50px] text-[14px] text-[#b4b4b4] md:right-[60px]">
+            {/* <p className="absolute bottom-[17px] right-[50px] text-[14px] text-[#b4b4b4] md:right-[60px]">
               20 / 20
-            </p>
+            </p> */}
           </form>
         </motion.div>
       )}

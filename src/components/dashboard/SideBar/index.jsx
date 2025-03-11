@@ -11,15 +11,18 @@ import LanguageSwitcher from "../LanguageSwitcher";
 import { useTranslations } from "next-intl";
 import ThemeToggle from "@/components/theme-toggle/theme-toggle";
 import {
-  GalleryHorizontalEnd,
   CopyPlus,
   Icon,
-  Lightbulb,
   ScanText,
   Images,
+  Newspaper,
+  CirclePlus,
+  CircleHelp,
+  MessagesSquare,
+  Sparkles,
   LogIn,
 } from "lucide-react";
-import { planet, featherText } from "@lucide/lab";
+import { planet } from "@lucide/lab";
 
 const SideBar = () => {
   const router = useRouter();
@@ -91,16 +94,10 @@ const SideBar = () => {
             theme === "light" ? "light" : ""
           } cursor-pointer `}
           onClick={() => {
-            router.push("/");
+            router.replace("/dashboard");
           }}
         >
-          <Image
-            className="logoEnixSidebar"
-            src="/images/history.svg"
-            alt="Enix"
-            width={100}
-            height={100}
-          />
+           <CirclePlus color="white" size={25} />
           <h3 className="sideBarLinkLabel">{t("newChat")}</h3>
           <div className="hoverEffectIcon">
             <Image
@@ -122,7 +119,7 @@ const SideBar = () => {
             width="25"
             height="25"
           /> */}
-          <Lightbulb color="white" size={25} />
+          <CircleHelp color="white" size={25} />
           <h3 className="sideBarLinkLabel">FAQ</h3>
           <div className="hoverEffectIcon">
             <Image
@@ -137,7 +134,7 @@ const SideBar = () => {
           className={`sideBarLink ${theme === "light" ? "light" : ""} `}
           href={"/articles"}
         >
-          <Icon iconNode={featherText} color="white" size={25} />
+          <Newspaper color="white" size={25} />
           <h3 className="sideBarLinkLabel">{t("articles")}</h3>
           <div className="hoverEffectIcon">
             <Image
@@ -161,7 +158,7 @@ const SideBar = () => {
             width="25"
             height="25"
           /> */}
-          <ScanText color="white" size={25} />
+          <MessagesSquare color="white" size={25} />
           <h3 className="sideBarLinkLabel">{t("text")}</h3>
           <div className="hoverEffectIcon">
             <Image
@@ -194,7 +191,7 @@ const SideBar = () => {
             width="22"
             height="25"
           /> */}
-          <Images color="white" size={25} />
+          <Sparkles color="white" size={25} />
           <h3 className="sideBarLinkLabel">{t("text2")}</h3>
           <div className="hoverEffectIcon imageGenerateIcon">
             <Image
