@@ -94,9 +94,9 @@
           border-radius: 9999px; // эквивалент rounded-full
           transition: background-color 200ms; // эквивалент transition-colors и duration-200
 
-          &:hover {
-            background-color: rgba(55, 65, 81, 0.5);
-          }
+          // &:hover {
+          //   background-color: rgba(55, 65, 81, 0.5);
+          // }
         }
       }
 
@@ -129,7 +129,7 @@
       }
 
       &:hover {
-        background: #1c1c1cb6;
+        opacity: 0.7;
 
         h4 {
           max-width: 200px;
