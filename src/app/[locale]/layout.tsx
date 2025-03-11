@@ -1,20 +1,9 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-
-const gilroy = localFont({
-  src: [
-    {
-      path: "fonts/Gilroy-Regular.woff2",
-    },
-    {
-      path: "fonts/Gilroy-Medium.woff2",
-    },
-  ],
-});
+import { Rubik } from 'next/font/google';
 
 import "./globals.css";
 import ContextProvider from "@/providers/contextProvider";
@@ -24,6 +13,7 @@ export const metadata: Metadata = {
   description:
     "ENIX AI Assistant — aqlli va tez yordamchi, salqin vibe bilan. Savollarga javob beradi, vazifalarga yordam beradi va hayotni osonlashtiradi. 🚀",
 };
+const rubik = Rubik({ subsets: ['latin', 'cyrillic'], weight: ['400', '700'] });
 
 export default async function RootLayout({
   children,
@@ -43,12 +33,12 @@ export default async function RootLayout({
 
   return (
     <ContextProvider>
-      <html lang={locale}>
+      <html lang={locale} className={rubik.className}>
         <head>
           <link rel="icon" href="/favicon.png" sizes="any" />
           <title>ENIX AI Assistent</title>
         </head>
-        <body className={`${gilroy.className}`}>
+        <body>
           <NextIntlClientProvider messages={messages}>
             {children}
           </NextIntlClientProvider>

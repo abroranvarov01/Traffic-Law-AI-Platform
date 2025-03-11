@@ -477,7 +477,7 @@ const DashboardContentFunctionality = (props) => {
                       item.message
                     ) : (
                       <div className="relative flex gap-4">
-                        <div className="flex items-center justify-center bg-[#2f2f2f] rounded-full w-[30px] h-[30px] p-1 min-w-[30px] min-h-[30px]">
+                        <div className="modelAnswerIcon flex items-center justify-center bg-[#2f2f2f] rounded-full w-[30px] h-[30px] p-1 min-w-[30px] min-h-[30px]">
                           <Image
                             src="/images/logo.png"
                             alt="logo"

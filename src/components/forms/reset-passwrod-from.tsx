@@ -17,10 +17,8 @@ import Image from "next/image";
 import LanguageSwitcher from "../dashboard/LanguageSwitcher";
 import { useTranslations } from "next-intl";
 import React from "react";
-import { useCookies } from "react-cookie";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import SmsCodeModal from "./smscode-modal";
 import { Eye, EyeOff } from "lucide-react";
 interface FormElements extends HTMLFormControlsCollection {
   passwordRepeat: HTMLInputElement;
@@ -39,11 +37,9 @@ export function ResetPasswordForm({
 }: React.ComponentPropsWithoutRef<"div">) {
   const t = useTranslations("Register");
   const router = useRouter();
-  const [cookies, setCookie] = useCookies();
   const [phone, setPhone] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);
   const [havePhoone, setHavePhone] = React.useState(false);
-  const [open, setOpen] = React.useState<boolean>(false);
 
   const formatPhoneNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, "");

@@ -421,6 +421,7 @@
     margin-right: auto;
     font-size: 16px;
     border-radius: 20px 20px 20px 0;
+    line-height: 31px;
 
     & * {
       letter-spacing: 0.6px;
@@ -649,8 +650,12 @@
   }
 
   .dashboardContentFunctionality .chatField {
-    max-height: calc(100dvh - 183px);
+    max-height: calc(100dvh - 201px);
     padding: 20px 0;
+
+    .modelAnswerIcon{
+      display: none;
+    }
   }
 
   .dashboardContentFunctionality .copyItem {

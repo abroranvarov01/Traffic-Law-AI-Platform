@@ -25,7 +25,7 @@ const QuestionsContent = () => {
             <div className="divider"></div>
           </div>
           <div className="sections">
-            {t.raw("questions").map((section: any, index: number) => (
+            {t.raw("questions").map((section: { title: string; content: string }, index: number) => (
               <div
                 key={index}
                 className={`section ${openIndex === index ? "open" : ""}`}
