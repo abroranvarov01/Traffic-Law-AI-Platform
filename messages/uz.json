@@ -158,5 +158,31 @@
     "back": "Orqaga",
     "title": "Yangliklar",
     "noSelected": "Tafsilotlarni koʻrish uchun yanglikni tanlang"
+  },
+  "FAQ": {
+    "title": "Ko'p so'raladigan savollar",
+    "questions": [
+      {
+        "title": "Qanday ro'yxatdan o'tish mumkin?",
+        "content": "Enix.uz platformasida ro'yxatdan o'tish uchun quyidagi qadamlarni bajaring:\n1. Rasmiy Enix.uz veb-saytiga o'ting.\n2. \"Ro'yxatdan o'tish\" tugmasini bosing.\n3. Quyidagi ma'lumotlarni kiriting:\n• Telefon raqamingiz\n• Elektron pochta manzilingiz\n• To'liq ismingiz\n• Ishonchli parol yarating\n4. Shaklni to'ldirgandan so'ng, sizga telefon yoki elektron pochta orqali tasdiqlash kodi keladi.\n5. Kodni kiriting va platformaning imkoniyatlaridan foydalanishni boshlang!"
+      },
+      {
+        "title": "Rejimlar orasida qanday almashish mumkin?",
+        "content": "Enix.uz platformasida ikkita asosiy rejim mavjud:\n• Matn bilan ishlash\n• Rasm bilan ishlash\nUlar orasida almashish uchun quyidagi usullardan birini ishlating:\n• Bosh sahifada kerakli rejimni tanlash uchun tegishli tugmani bosing.\n• Yoki platforma menyusidan foydalanib funksiyalar orasida o'ting."
+      },
+      {
+        "title": "Qanday qilib tilni o'zgartirish mumkin?",
+        "content": "Enix.uz platformasi qulay foydalanish uchun til tanlash imkoniyatini taqdim etadi:\n• Dastlabki ishga tushirishda sizga avtomatik ravishda til tanlash taklif etiladi.\n• Agar keyinchalik tilni o'zgartirmoqchi bo'lsangiz, menyuni oching va tilni o'zgartirish tugmasini bosing.\nShunday qilib, siz istalgan vaqtda qulay tilni tanlashingiz mumkin."
+      },
+      {
+        "title": "Chat tarixini qayerdan topish mumkin?",
+        "content": "Sizning barcha chatlaringiz tarixingiz platformada saqlanadi va foydalanish uchun qulay.\nChat tarixini ko'rish uchun:\n• Ekranning chap yuqori burchagiga o'ting.\n• \"Chat tarixi\" ikonkasini bosing — bu yerda barcha suhbatlaringiz saqlanadi.\nSiz istalgan vaqtda oldingi suhbatlarga qaytishingiz mumkin!"
+      },
+      {
+        "title": "Obunani qayerdan sotib olish mumkin?",
+        "content": "Platformaning qo'shimcha imkoniyatlaridan foydalanish uchun premium-status sotib olishingiz mumkin.\nQadam-baqadam ko'rsatma:\n1. Saytning yuqori qismida \"Premium-statusni sotib olish\" tugmasini bosing.\n2. Mos tarifni tanlang va to'lov ko'rsatmalariga rioya qiling.\n3. To'lov \"Click\" yoki \"Payme\" tizimi orqali amalga oshiriladi — bu tez va xavfsiz.\nTo'lov muvaffaqiyatli yakunlangandan so'ng, premium-funksiyalar avtomatik ravishda faollashtiriladi."
+      }
+    ],
+    "Back": "Orqaga"
   }
 }

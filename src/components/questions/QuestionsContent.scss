@@ -39,7 +39,7 @@
 }
 
 .divider {
-  width: 12rem;
+  width: 20rem;
   height: 0.125rem;
   background-color: #cbd5e1;
   margin: 0 auto;
@@ -120,6 +120,7 @@
 .sectionContent {
   max-height: none; // По умолчанию контент всегда открыт
   opacity: 1;
+  white-space: pre-line;
   visibility: visible;
 
   & > div {
