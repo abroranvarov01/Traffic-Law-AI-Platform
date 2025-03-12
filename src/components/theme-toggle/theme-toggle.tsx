@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
-import { Sun, Moon } from 'lucide-react';
-
+import { Sun, Moon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const ThemeToggle: React.FC = () => {
+  const t = useTranslations("Dashboard");
   const [cookies, setCookie] = useCookies(["theme"]);
   const [theme, setTheme] = useState<"light" | "dark">("dark"); // По умолчанию 'dark'
 
@@ -30,20 +31,19 @@ const ThemeToggle: React.FC = () => {
   };
 
   return (
-    <button className={`sideBarLink ${theme === "light" ? "light" : ""} `}  onClick={toggleTheme}>
+    <button
+      className={`sideBarLink ${theme === "light" ? "light" : ""} `}
+      onClick={toggleTheme}
+    >
       {theme === "light" ? (
         <>
-        <Sun size={25} color="white" />
-        <h3 className="sideBarLinkLabel">
-          Светлая тема
-        </h3>
+          <Sun size={25} color="white" />
+          <h3 className="sideBarLinkLabel">{t("light")}</h3>
         </>
       ) : (
         <>
-        <Moon size={25} color="white" />
-        <h3 className="sideBarLinkLabel">
-          Темная тема
-        </h3>
+          <Moon size={25} color="white" />
+          <h3 className="sideBarLinkLabel">{t("dark")}</h3>
         </>
       )}
     </button>

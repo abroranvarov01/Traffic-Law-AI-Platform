@@ -49,6 +49,8 @@
     "RegisterPublicOffer": "jamoat taklifi"
   },
   "Dashboard": {
+    "light": "Yorug' mavzu",
+    "dark": "Qorong'i mavzu",
     "errorMessage": "Xato yuz berdi. Yana urinib ko'ring.",
     "menu": "Menyu",
     "notice": "ENIX xatolarga yo'l qo'yishi mumkin. Muhim ma'lumotlarni tekshirishni tavsiya etamiz.",
@@ -161,6 +163,7 @@
     "back": "Orqaga",
     "title": "Yangliklar",
     "noSelected": "Tafsilotlarni koʻrish uchun yanglikni tanlang",
+    "go": "O'tish",
     "products": [
       {
         "id": 1,

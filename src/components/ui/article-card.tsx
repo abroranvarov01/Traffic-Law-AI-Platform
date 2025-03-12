@@ -1,8 +1,10 @@
 import { ArticleType } from "@/app/[locale]/articles/page";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 const ArtileCard = ({ title, date, quote, description }: ArticleType) => {
+  const t = useTranslations("Articles");
   return (
     <button
       style={{ border: "1px solid #FFFFFF1A" }}
@@ -29,7 +31,7 @@ const ArtileCard = ({ title, date, quote, description }: ArticleType) => {
           href={"/articles"}
           className="inline-flex items-center rounded-[6px] border px-2.5 py-0.5 text-xs font-semibold transition-colors  border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
         >
-          Перейти
+          {t("go")}
         </Link>
       </div>
     </button>
