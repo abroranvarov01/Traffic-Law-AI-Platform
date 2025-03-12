@@ -1,6 +1,8 @@
+import { ArticleType } from "@/app/[locale]/articles/page";
+import { Link } from "@/i18n/routing";
 import React from "react";
 
-const ArtileCard = () => {
+const ArtileCard = ({ title, date, quote, description }: ArticleType) => {
   return (
     <button
       style={{ border: "1px solid #FFFFFF1A" }}
@@ -9,31 +11,26 @@ const ArtileCard = () => {
       <div className="flex w-full flex-col gap-1">
         <div className="flex items-center">
           <div className="flex items-center gap-2">
-            <div className="font-semibold text-text ">William Smith</div>
+            <div className="font-semibold text-text ">{title}</div>
           </div>
-          <div className="ml-auto text-xs text-muted-foreground">
-            over 1 year ago
-          </div>
+          <div className="ml-auto text-xs text-muted-foreground">{date}</div>
         </div>
-        <div className="text-xs font-medium text-text">Meeting Tomorrow</div>
+        <div className="text-xs font-medium text-text">
+          {quote?.length > 20 ? description.slice(0, 20) + "..." : description}
+        </div>
       </div>
       <div className="line-clamp-2 text-xs text-muted-foreground">
-        Hi, let&apos;s have a meeting tomorrow to discuss the project. I&apos;ve been
-        reviewing the project details and have some ideas I&apos;d like to share.
-        It&apos;s crucial that we align on our next steps to ensure the project&apos;s
-        success. Please come prepared with any questions or insights you may
-        have. Looking forward to
+        {description?.length > 50
+          ? description.slice(0, 50) + "..."
+          : description}
       </div>
       <div className="flex items-center gap-2">
-        <div className="inline-flex items-center rounded-[6px] border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">
-          meeting
-        </div>
-        <div className="inline-flex items-center rounded-[6px] border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80">
-          work
-        </div>
-        <div className="inline-flex items-center rounded-[6px] border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">
-          important
-        </div>
+        <Link
+          href={"/articles"}
+          className="inline-flex items-center rounded-[6px] border px-2.5 py-0.5 text-xs font-semibold transition-colors  border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
+        >
+          Перейти
+        </Link>
       </div>
     </button>
   );

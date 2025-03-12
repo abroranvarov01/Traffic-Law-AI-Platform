@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FileText, FileIcon, BoxIcon } from "lucide-react";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
@@ -45,14 +45,11 @@ const MyDocument = ({ text }: { text: string }) => (
   </Document>
 );
 
-export const DownloadButton = ({
-  text,
-  isOpen,
-  setIsOpen,
-}: DownloadButtonProps) => {
+export const DownloadButton = ({ text, isOpen, setIsOpen }: DownloadButtonProps) => {
   const t = useTranslations("Dashboard");
   const [cookiesTheme] = useCookies(["theme"]);
   const [theme, setTheme] = useState("dark");
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setTheme(cookiesTheme.theme || "dark");
@@ -62,33 +59,41 @@ export const DownloadButton = ({
     document.body.classList.toggle("light", theme === "light");
   }, [theme]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
   const downloadTxt = () => {
     setIsOpen(false);
     const blob = new Blob([text], { type: "text/plain" });
-    const fileName = "result.txt";
-
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = fileName;
+    a.download = "result.txt";
     a.click();
     URL.revokeObjectURL(url);
-
     toast.success(t("Tostify.successDownload"));
   };
 
   const downloadWord = () => {
     setIsOpen(false);
     const blob = new Blob([text], { type: "application/msword" });
-    const fileName = "result.doc";
-
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = fileName;
+    a.download = "result.doc";
     a.click();
     URL.revokeObjectURL(url);
-
     toast.success(t("Tostify.successDownload"));
   };
 
@@ -110,59 +115,47 @@ export const DownloadButton = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={modalRef}>
       {isOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/20 z-20"
-            onClick={() => setIsOpen(false)}
-          />
-          <div className="absolute mt-1.5 w-44 bg-background-header rounded-[10px] shadow-lg border border-gray-700/50 overflow-hidden z-50">
-            <div className="p-1">
-              <button
-                onClick={downloadPdf}
-                className="flex items-center gap-2 w-full px-2 py-1.5 text-gray-300 hover:bg-gray-700/40 rounded-sm transition-all duration-150"
-              >
-                <div className="p-1 rounded-sm bg-gray-700/30 text-red-400">
-                  <BoxIcon size={14} />
-                </div>
-                <div className="text-left flex-1 min-w-0">
-                  <div className="text-[11px] font-medium text-gray-200 truncate">
-                    PDF
-                  </div>
-                </div>
-              </button>
+        <div className="absolute mt-1.5 w-44 bg-background-header rounded-[10px] shadow-lg border border-gray-700/50 overflow-hidden z-50">
+          <div className="p-1">
+            <button
+              onClick={downloadPdf}
+              className="flex items-center gap-2 w-full px-2 py-1.5 text-gray-300 hover:bg-gray-700/40 rounded-sm transition-all duration-150"
+            >
+              <div className="p-1 rounded-sm bg-gray-700/30 text-red-400">
+                <BoxIcon size={14} />
+              </div>
+              <div className="text-left flex-1 min-w-0">
+                <div className="text-[11px] font-medium text-gray-200 truncate">PDF</div>
+              </div>
+            </button>
 
-              <button
-                onClick={downloadWord}
-                className="flex items-center gap-2 w-full px-2 py-1.5 text-gray-300 hover:bg-gray-700/40 rounded-sm transition-all duration-150"
-              >
-                <div className="p-1 rounded-sm bg-gray-700/30 text-blue-400">
-                  <FileText size={14} />
-                </div>
-                <div className="text-left flex-1 min-w-0">
-                  <div className="text-[11px] font-medium text-gray-200 truncate">
-                    Word
-                  </div>
-                </div>
-              </button>
+            <button
+              onClick={downloadWord}
+              className="flex items-center gap-2 w-full px-2 py-1.5 text-gray-300 hover:bg-gray-700/40 rounded-sm transition-all duration-150"
+            >
+              <div className="p-1 rounded-sm bg-gray-700/30 text-blue-400">
+                <FileText size={14} />
+              </div>
+              <div className="text-left flex-1 min-w-0">
+                <div className="text-[11px] font-medium text-gray-200 truncate">Word</div>
+              </div>
+            </button>
 
-              <button
-                onClick={downloadTxt}
-                className="flex items-center gap-2 w-full px-2 py-1.5 text-gray-300 hover:bg-gray-700/40 rounded-sm transition-all duration-150"
-              >
-                <div className="p-1 rounded-sm bg-gray-700/30 text-green-400">
-                  <FileIcon size={14} />
-                </div>
-                <div className="text-left flex-1 min-w-0">
-                  <div className="text-[11px] font-medium text-gray-200 truncate">
-                    Text
-                  </div>
-                </div>
-              </button>
-            </div>
+            <button
+              onClick={downloadTxt}
+              className="flex items-center gap-2 w-full px-2 py-1.5 text-gray-300 hover:bg-gray-700/40 rounded-sm transition-all duration-150"
+            >
+              <div className="p-1 rounded-sm bg-gray-700/30 text-green-400">
+                <FileIcon size={14} />
+              </div>
+              <div className="text-left flex-1 min-w-0">
+                <div className="text-[11px] font-medium text-gray-200 truncate">Text</div>
+              </div>
+            </button>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

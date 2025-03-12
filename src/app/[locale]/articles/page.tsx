@@ -7,7 +7,7 @@ import { useRouter } from "@/i18n/routing";
 import ProductCard from "@/components/articles/product-card";
 import ProductDetails from "@/components/articles/product-detail";
 
-export interface Product {
+export interface ArticleType {
   id: number;
   title: string;
   quote: string;
@@ -20,8 +20,8 @@ export interface Product {
 export default function Page() {
   const t = useTranslations("Articles");
   const router = useRouter();
-  const products = t.raw("products") as Product[];
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(
+  const products = t.raw("products") as ArticleType[];
+  const [selectedProduct, setSelectedProduct] = useState<ArticleType | null>(
     products[0]
   );
   return (

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import "./index.scss";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
@@ -25,11 +25,16 @@ import { featherText } from "@lucide/lab";
 import { planet } from "@lucide/lab";
 import ThemeToggle from "@/components/theme-toggle/theme-toggle";
 import ArtileCard from "@/components/ui/article-card";
+import { title } from "process";
+import axios from "axios";
 
 const MobileMenu = () => {
+  const t2 = useTranslations("Articles");
+  const Articles = t2.raw("products");
   const router = useRouter();
   const t = useTranslations("Dashboard");
   const locale = useLocale();
+  const [user, setUser] = useState({});
   const [cookies, setCookie, removeCookie] = useCookies(
     "secretToken",
     "isActiveUser",
@@ -54,6 +59,34 @@ const MobileMenu = () => {
   }, [theme]);
   console.log(activeUser, "activeUSer");
 
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_APP_API_URL}/auth/profile`,
+          {
+            headers: { Authorization: `Bearer ${cookies.secretToken}` },
+          }
+        );
+        const data = response.data;
+        setUser(data);
+      } catch (error) {
+        console.error("Ошибка при запросе:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  const getInitials = (name) => {
+    if (!name || typeof name !== "string") return "";
+
+    const matches = name.match(/[A-Z]/g);
+    return matches
+      ? matches.slice(0, 2).join("")
+      : name.slice(0, 2).toUpperCase();
+  };
+
+  const initialName = getInitials(user?.fullname);
   return (
     <div
       className="downMenuShadow"
@@ -81,9 +114,9 @@ const MobileMenu = () => {
             className={`sideBarLink ${theme === "light" ? "light" : ""}`}
             href={"/dashboard"}
             onClick={(e) => {
-              e.preventDefault(); 
+              e.preventDefault();
               setOpenLogoMenu(!openLogoMenu);
-              router.replace("/dashboard"); 
+              router.replace("/dashboard");
             }}
           >
             <CirclePlus color="white" size={25} />
@@ -184,9 +217,14 @@ const MobileMenu = () => {
 
         <div className="mobileMenuFunctions">
           <div className="grid col-1 gap-2">
-            <ArtileCard />
-            <ArtileCard />
-            <ArtileCard />
+            {Articles.slice(0, 3).map((product) => (
+              <ArtileCard
+                key={product.id}
+                title={product.title}
+                description={product.description}
+                quote={product.quote}
+              />
+            ))}
           </div>
           <div className="bottomWrapper">
             {!activeUser && (
@@ -218,11 +256,11 @@ const MobileMenu = () => {
             <div className="userInfo">
               <div className="userInfoWrapper">
                 <div className="userIcon">
-                  <span className="spanIcon">SK</span>
+                  <span className="spanIcon">{initialName}</span>
                 </div>
                 <div>
-                  <h3 className="userInfoTitle">Siriwat K.</h3>
-                  <p className="userInfoText">+998-88-167-11-14</p>
+                  <h3 className="userInfoTitle">{user.fullname}</h3>
+                  <p className="userInfoText">{user.phone_number}</p>
                 </div>
               </div>
               <button
