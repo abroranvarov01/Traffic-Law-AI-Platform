@@ -6,6 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   gap: 15px;
 
   .contentHeader {
@@ -240,6 +241,8 @@
   .textForm.answer {
     border-radius: 20px 0 20px 20px;
     background: #1f7251;
+    position: absolute;
+    bottom: 0;
   }
 
   .helperButtonsTitle {

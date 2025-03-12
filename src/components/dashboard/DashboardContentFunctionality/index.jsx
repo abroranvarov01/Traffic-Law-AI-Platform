@@ -34,7 +34,7 @@ import {
   Type,
   MoonStar,
   Sparkles,
-  MessagesSquare
+  MessagesSquare,
 } from "lucide-react";
 import { DownloadButton } from "../downloadFile/selectModal";
 
@@ -121,6 +121,7 @@ const DashboardContentFunctionality = (props) => {
   const [openModalId, setOpenModalId] = useState(null);
   const [message, setMessage] = useState("");
   const textareaRef = useRef(null);
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
 
   // Автоувеличение высоты при изменении текста
   useEffect(() => {
@@ -137,6 +138,7 @@ const DashboardContentFunctionality = (props) => {
   useEffect(() => {
     document.body.classList.toggle("light", theme === "light");
   }, [theme]);
+
   const typeEffect = (text) => {
     setIsTyping(true);
     clearInterval(typingIntervalRef.current);
@@ -147,12 +149,22 @@ const DashboardContentFunctionality = (props) => {
       typedText += text[index];
       setTypedModelAnswer(typedText);
       index++;
+
       if (index === text.length) {
         clearInterval(typingIntervalRef.current);
         setIsTyping(false);
         setLoading(false);
       }
     }, 1);
+  };
+
+  const handleUserScroll = () => {
+    setIsUserScrolling(true);
+    clearTimeout(typingIntervalRef.current);
+    typingIntervalRef.current = setTimeout(
+      () => setIsUserScrolling(false),
+      2000
+    ); // 2 секунды без скролла — автоскролл включается
   };
 
   const getChatByChatId = useCallback(
@@ -407,8 +419,18 @@ const DashboardContentFunctionality = (props) => {
   }, [currentMessage, isDeleting, loopIndex, typingSpeed]);
 
   useEffect(() => {
-    scrollDownWhenAnswer();
-  }, [typedModelAnswer]);
+    if (!isUserScrolling && !isTyping) {
+      scrollDownWhenAnswer();
+    }
+  }, [typedModelAnswer, isTyping]);
+
+  useEffect(() => {
+    const chatField = chatFieldRef.current;
+    if (chatField) {
+      chatField.addEventListener("scroll", handleUserScroll);
+      return () => chatField.removeEventListener("scroll", handleUserScroll);
+    }
+  }, []);
 
   useEffect(() => {
     setLanguage(cookies.modelAnswerLanguage || "");
@@ -657,7 +679,10 @@ const DashboardContentFunctionality = (props) => {
             <div
               className={`chosenModelIcon ${theme === "light" ? "light" : ""}`}
             >
-              <Sparkles color={theme === "light" ? "black" : "white"} size={25} />
+              <Sparkles
+                color={theme === "light" ? "black" : "white"}
+                size={25}
+              />
             </div>
             <div className="chosenModelText">{t("sideBar.text2")}</div>
           </motion.div>
@@ -702,7 +727,6 @@ const DashboardContentFunctionality = (props) => {
               transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
               name="message"
               onKeyDown={handleSendOnEnter}
-              disabled={loading}
             />
             <div className="languageSwitcher">
               <button
@@ -728,14 +752,14 @@ const DashboardContentFunctionality = (props) => {
               </button>
               <p className="languageSwitcherText">
                 {language === "ru"
-                  ? "Ответ русский"
+                  ? "Ответ на русском"
                   : language === "uz"
                   ? "Javob o'zbekcha"
-                  : "Answer English"}
+                  : "Answer on English"}
               </p>
             </div>
 
-            {isTyping ? (
+            {isTyping || loading ? (
               <button
                 className={`sendButton ${theme === "light" ? "light" : ""}`}
                 type="button"
@@ -772,7 +796,7 @@ const DashboardContentFunctionality = (props) => {
         </motion.div>
       )}
 
-      {!showAnswer && language && (
+      {/* {!showAnswer && language && (
         <>
           {props.type === "text" && (
             <motion.h3 className="helperButtonsTitle">
@@ -805,7 +829,7 @@ const DashboardContentFunctionality = (props) => {
               : ""}
           </div>
         </>
-      )}
+      )} */}
 
       {!language && (
         <div className="modelLanguageWrapper">

@@ -275,7 +275,7 @@ export function RegistrationForm({
                         <span className="text-xs text-white/70 group-hover:text-white/90 transition-colors">
                           {t("RegisterAcceptTerms")}
                           <a
-                            href="https://telegra.ph/Usloviya-referalnoj-programmy-01-11"
+                            href="https://telegra.ph/PUBLICHNAYA-OFERTA-03-12-2"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-white/90 underline hover:text-white transition-colors ml-1"

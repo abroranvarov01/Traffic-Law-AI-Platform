@@ -266,7 +266,7 @@ const MobileMenu = () => {
               <button
                 onClick={() => {
                   removeCookie("secretToken");
-                  window.location.href = `${locale}/signin`;
+                  window.location.href = `/${locale}/signin`;
                 }}
                 className="cursor-pointer w-8 h-8"
               >
