@@ -22,6 +22,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import SmsCodeModal from "./smscode-modal";
 import { Eye, EyeOff } from "lucide-react";
+import { Checkbox } from "../ui/checkbox";
 interface FormElements extends HTMLFormControlsCollection {
   passwordRepeat: HTMLInputElement;
   name: HTMLInputElement;
@@ -43,6 +44,8 @@ export function RegistrationForm({
   const [phone, setPhone] = React.useState("+998");
   const [showPassword, setShowPassword] = React.useState(false);
   const [open, setOpen] = React.useState<boolean>(false);
+  const [acceptOffer, setAcceptOffer] = React.useState<boolean>(false);
+  const [showError, setShowError] = React.useState<boolean>(false);
 
   const formatPhoneNumber = (value: string) => {
     const cleaned = value.replace(/\D/g, "");
@@ -78,6 +81,11 @@ export function RegistrationForm({
       return;
     }
 
+    if (!acceptOffer) {
+      setShowError(true);
+      return;
+    }
+
     axios
       .post(process.env.NEXT_PUBLIC_APP_API_URL + "/auth/register", {
         fullname: formElements.name.value,
@@ -89,8 +97,7 @@ export function RegistrationForm({
         setOpen(true);
       })
       .catch((err) => {
-        console.error(err);
-        console.log(process.env.NEXT_PUBLIC_APP_API_URL);
+        console.error();
         toast.error(t("authError"));
       });
   };
@@ -119,6 +126,10 @@ export function RegistrationForm({
         console.error(err);
         toast.error("Noto'g'ri tasdiqlash kodi!");
       });
+  };
+  const acceptOfferFunc = () => {
+    setAcceptOffer(!acceptOffer);
+    setShowError(false);
   };
 
   return (
@@ -251,6 +262,33 @@ export function RegistrationForm({
                           </button>
                         </div>
                       </div>
+                      <label className="flex items-start gap-2 cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          name="acceptOffer"
+                          checked={acceptOffer}
+                          onChange={acceptOfferFunc}
+                          className={`mt-0.5 rounded border-white/10 bg-white/5 text-white focus:ring-1 focus:ring-white/20 focus:ring-offset-0 ${
+                            showError && !acceptOffer ? "border-red-500" : ""
+                          }`}
+                        />
+                        <span className="text-xs text-white/70 group-hover:text-white/90 transition-colors">
+                          {t("RegisterAcceptTerms")}
+                          <a
+                            href="https://telegra.ph/Usloviya-referalnoj-programmy-01-11"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-white/90 underline hover:text-white transition-colors ml-1"
+                          >
+                            {t("RegisterPublicOffer")}
+                          </a>
+                        </span>
+                      </label>
+                      {showError && (
+                        <p className="text-red-500 text-xs">
+                          Вы должны принять условия оферты
+                        </p>
+                      )}
                       <Button
                         type="submit"
                         className="w-full text-black bg-white hover:bg-white/80"

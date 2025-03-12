@@ -15,6 +15,7 @@ import React from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { Eye, EyeOff } from "lucide-react";
+import { Checkbox } from "../ui/checkbox";
 
 interface FormElements extends HTMLFormControlsCollection {
   phone: HTMLInputElement;

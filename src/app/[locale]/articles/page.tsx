@@ -17,67 +17,13 @@ export interface Product {
   description: string;
 }
 
-const products: Product[] = [
-  {
-    id: 1,
-    title: "Hay When You Need It",
-    quote:
-      "Agriculture is the most healthful, most useful and most noble employment of man.",
-    author: "George Washington",
-    date: "Thursday 09 2022",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Gvcs0Tp9uDqqc1TUOmvqvMpWqC36ZP.png",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis cum consequat consequat duis urna egestas quis
-    purus sit. Pellentesque vel condimentum enim eu. Cursus diam egestas maecenas vitae velit lectus. Pulvinar lorem
-    nunc pharetra, mauris, scelerisque. Bibendum at congue mattis risus odio. Nibh orci vitae duis sed. Ipsum et
-    risus aliquam a aliquam vestibulum justo ipsum in. Nulla.
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis cum consequat consequat duis urna egestas quis
-    purus sit. Pellentesque vel condimentum enim eu. Cursus diam egestas maecenas vitae velit lectus.`,
-  },
-  {
-    id: 2,
-    title: "Fresh Tomatoes",
-    quote:
-      "Agriculture is the most healthful, most useful and most noble employment of man.",
-    author: "George News",
-    date: "Thursday 09 2022",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Gvcs0Tp9uDqqc1TUOmvqvMpWqC36ZP.png",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis cum consequat consequat duis urna egestas quis
-    purus sit. Pellentesque vel condimentum enim eu. Cursus diam egestas maecenas vitae velit lectus.`,
-  },
-  {
-    id: 3,
-    title: "Farm Fresh Produce",
-    quote:
-      "Agriculture is the most healthful, most useful and most noble employment of man.",
-    author: "News Washington",
-    date: "Thursday 09 2022",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Gvcs0Tp9uDqqc1TUOmvqvMpWqC36ZP.png",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis cum consequat consequat duis urna egestas quis
-    purus sit. Pellentesque vel condimentum enim eu.`,
-  },
-  {
-    id: 4,
-    title: "Strawberry Ginger",
-    quote:
-      "Agriculture is the most healthful, most useful and most noble employment of man.",
-    author: "News Washington",
-    date: "Thursday 09 2022",
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Gvcs0Tp9uDqqc1TUOmvqvMpWqC36ZP.png",
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Convallis cum consequat consequat duis urna egestas quis
-    purus sit. Pellentesque vel condimentum enim eu. Cursus diam egestas maecenas vitae velit lectus. Pulvinar lorem
-    nunc pharetra, mauris, scelerisque.`,
-  },
-];
-
 export default function Page() {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(products[0]);
   const t = useTranslations("Articles");
   const router = useRouter();
+  const products = t.raw("products") as Product[];
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(
+    products[0]
+  );
   return (
     <div className="bg-background-prices h-dvh">
       <div className="bg-background-prices w-full">
