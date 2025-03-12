@@ -35,6 +35,7 @@ import {
   MoonStar,
   Sparkles,
   MessagesSquare,
+  ImagePlus,
 } from "lucide-react";
 import { DownloadButton } from "../downloadFile/selectModal";
 
@@ -679,7 +680,7 @@ const DashboardContentFunctionality = (props) => {
             <div
               className={`chosenModelIcon ${theme === "light" ? "light" : ""}`}
             >
-              <Sparkles
+              <ImagePlus
                 color={theme === "light" ? "black" : "white"}
                 size={25}
               />

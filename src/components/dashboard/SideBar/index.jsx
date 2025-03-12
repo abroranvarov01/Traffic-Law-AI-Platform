@@ -21,6 +21,7 @@ import {
   MessagesSquare,
   Sparkles,
   LogIn,
+  ImagePlus,
 } from "lucide-react";
 import { planet } from "@lucide/lab";
 
@@ -190,7 +191,7 @@ const SideBar = () => {
             width="22"
             height="25"
           /> */}
-          <Sparkles color="white" size={25} />
+          <ImagePlus color="white" size={25} />
           <h3 className="sideBarLinkLabel">{t("text2")}</h3>
           <div className="hoverEffectIcon imageGenerateIcon">
             <Image

@@ -19,6 +19,7 @@ import {
   MessagesSquare,
   Sparkles,
   LogOut,
+  ImagePlus,
 } from "lucide-react";
 
 import { featherText } from "@lucide/lab";
@@ -202,7 +203,7 @@ const MobileMenu = () => {
             href={"/dashboard/image"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
-            <Sparkles color="white" size={25} />
+            <ImagePlus color="white" size={25} />
             <h3 className="sideBarLinkLabel">{t("sideBar.text2")}</h3>
             <div className="hoverEffectIcon imageGenerateIcon">
               <Image
