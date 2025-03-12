@@ -1,4 +1,3 @@
-import { Product } from "@/app/[locale]/articles/page";
 import Image from "next/image";
 
 const ProductCard = ({
@@ -6,7 +5,13 @@ const ProductCard = ({
   isSelected,
   onClick,
 }: {
-  product: Product;
+  product: {
+    image: string;
+    title: string;
+    quote: string;
+    author: string;
+    date: string;
+  };
   isSelected: boolean;
   onClick: () => void;
 }) => {

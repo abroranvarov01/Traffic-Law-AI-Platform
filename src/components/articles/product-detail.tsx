@@ -1,4 +1,3 @@
-import { Product } from "@/app/[locale]/articles/page";
 import { X } from "lucide-react";
 import Image from "next/image";
 
@@ -6,7 +5,13 @@ const ProductDetails = ({
   product,
   onClose,
 }: {
-  product: Product;
+  product: {
+    title: string;
+    image: string;
+    author: string;
+    date: string;
+    description: string;
+  };
   onClose: () => void;
 }) => {
   return (

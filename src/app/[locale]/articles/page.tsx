@@ -60,7 +60,7 @@ export default function Page() {
                   "var(--scrollbar-color-first) var(--scrollbar-color-second)",
               }}
             >
-              <div className="bg-background-prices rounded-lg p-6 lg:p-0 max-h-[80vh] overflow-auto custom-scrollbar">
+              <div className="bg-background-prices rounded-lg p-6 lg:p-0 overflow-auto custom-scrollbar">
                 {selectedProduct ? (
                   <ProductDetails
                     product={selectedProduct}

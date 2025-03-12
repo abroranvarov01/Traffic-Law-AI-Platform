@@ -22,7 +22,6 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import SmsCodeModal from "./smscode-modal";
 import { Eye, EyeOff } from "lucide-react";
-import { Checkbox } from "../ui/checkbox";
 interface FormElements extends HTMLFormControlsCollection {
   passwordRepeat: HTMLInputElement;
   name: HTMLInputElement;
@@ -96,7 +95,7 @@ export function RegistrationForm({
         setCookie("secretToken", res.data.access_token);
         setOpen(true);
       })
-      .catch((err) => {
+      .catch(() => {
         console.error();
         toast.error(t("authError"));
       });

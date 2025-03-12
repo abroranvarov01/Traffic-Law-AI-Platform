@@ -71,7 +71,7 @@ export const DownloadButton = ({ text, isOpen, setIsOpen }: DownloadButtonProps)
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
 
   const downloadTxt = () => {
     setIsOpen(false);
