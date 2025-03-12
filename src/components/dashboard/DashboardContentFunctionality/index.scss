@@ -181,6 +181,11 @@
         scrollbar-width: thin;
         scrollbar-color: #434343 #2f2f2f;
 
+        .modelAnswerIcon{
+          position: sticky;
+          top: 0;
+        }
+
         &::placeholder {
           color: #b4b4b4;
         }
