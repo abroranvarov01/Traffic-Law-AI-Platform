@@ -29,7 +29,6 @@ const ContextProvider = ({ children }: Props) => {
   );
 };
 
-// Хук для получения контекста
 export const useMainContext = () => {
   const context = useContext(MainContext);
   if (!context) {

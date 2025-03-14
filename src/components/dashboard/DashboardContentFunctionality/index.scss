@@ -335,8 +335,12 @@
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-color-first) var(--scrollbar-color-second);
 
-    * {
+    *:not(pre):not(pre *) {
       color: hsl(var(--text-color));
+    }
+
+    pre{
+      margin: 15px 0;
     }
   }
 
@@ -442,53 +446,53 @@
       }
     }
 
-    pre {
-      margin: 15px 0;
-      padding: 15px;
-      background: #0d0d0d;
-      border: 1px solid #141414;
-      border-radius: 10px;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      overflow: auto;
-      font-size: 14px;
-      line-height: 22px;
-      letter-spacing: 0.7px;
+    // pre {
+    //   margin: 15px 0;
+    //   padding: 15px;
+    //   background: #0d0d0d;
+    //   border: 1px solid #141414;
+    //   border-radius: 10px;
+    //   white-space: pre-wrap;
+    //   word-wrap: break-word;
+    //   overflow: auto;
+    //   font-size: 14px;
+    //   line-height: 22px;
+    //   letter-spacing: 0.7px;
 
-      code {
-        font-size: 14px;
-        line-height: 22px;
-        letter-spacing: 0.7px;
-      }
+    //   code {
+    //     font-size: 14px;
+    //     line-height: 22px;
+    //     letter-spacing: 0.7px;
+    //   }
 
-      .hljs {
-        display: block;
-        overflow-x: auto;
-        padding: 0.5em;
-        color: #abb2bf;
-        background: #282c34;
-      }
+    //   .hljs {
+    //     display: block;
+    //     overflow-x: auto;
+    //     padding: 0.5em;
+    //     color: #abb2bf;
+    //     background: #282c34;
+    //   }
 
-      .hljs-comment,
-      .hljs-quote {
-        color: #5c6370;
-        font-style: italic;
-      }
+    //   .hljs-comment,
+    //   .hljs-quote {
+    //     color: #5c6370;
+    //     font-style: italic;
+    //   }
 
-      .hljs-doctag,
-      .hljs-keyword,
-      .hljs-formula {
-        color: #c678dd;
-      }
+    //   .hljs-doctag,
+    //   .hljs-keyword,
+    //   .hljs-formula {
+    //     color: #c678dd;
+    //   }
 
-      .hljs-section,
-      .hljs-name,
-      .hljs-selector-tag,
-      .hljs-deletion,
-      .hljs-subst {
-        color: #e06c75;
-      }
-    }
+    //   .hljs-section,
+    //   .hljs-name,
+    //   .hljs-selector-tag,
+    //   .hljs-deletion,
+    //   .hljs-subst {
+    //     color: #e06c75;
+    //   }
+    // }
 
     h3:not(:first-child) {
       margin-top: 20px;

@@ -38,8 +38,14 @@ export default function Page() {
           <h1 className="mb-6 text-center text-2xl font-bold text-text lg:text-3xl lg:mb-8">
             {t("title")}
           </h1>
-          <div className="relative flex flex-col lg:flex-row lg:gap-2">
-            <div className="lg:w-1/2">
+          <div className="newsWrapper relative flex flex-col lg:flex-row lg:gap-2">
+            <div
+              className="lg:w-1/2 pr-2 overflow-y-scroll"
+              style={{
+                scrollbarColor:
+                  "var(--scrollbar-color-first) var(--scrollbar-color-second)",
+              }}
+            >
               <div className=" items-center gap-3 grid md:grid-cols-2 lg:grid-cols-1">
                 {products.map((product) => (
                   <ProductCard
@@ -52,7 +58,7 @@ export default function Page() {
               </div>
             </div>
             <div
-              className={`fixed inset-0 z-50 bg-background-prices backdrop-blur-sm lg:static lg:z-auto lg:w-1/2 lg:bg-transparent lg:backdrop-blur-none ${
+              className={`fixed inset-0 z-50 bg-background-prices backdrop-blur-sm lg:static lg:z-auto lg:w-1/2 overflow-y-scroll lg:bg-transparent lg:backdrop-blur-none ${
                 selectedProduct ? "block" : "hidden lg:block"
               }`}
               style={{

@@ -43,6 +43,10 @@ a {
   text-decoration: none;
 }
 
+.newsWrapper{
+  height: calc(100dvh - 120px);
+}
+
 @layer base {
   :root {
     --copy-item: 0, 0%, 18.43%;

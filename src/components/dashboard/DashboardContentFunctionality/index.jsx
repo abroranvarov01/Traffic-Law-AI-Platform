@@ -18,6 +18,8 @@ import { Fancybox } from "@fancyapps/ui";
 import "@fancyapps/ui/dist/fancybox/fancybox.css";
 import { Link } from "@/i18n/routing";
 import LoadingSpinner from "@/components/ui/loadding-spinner";
+import hljs from "highlight.js";
+import "highlight.js/styles/github-dark.css";
 import {
   ScanText,
   Images,
@@ -71,6 +73,15 @@ const DashboardContentFunctionality = (props) => {
       Fancybox.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    hljs.highlightAll();
+  }, []);
+
+  const handleCopyCode = (code) => {
+    navigator.clipboard.writeText(code);
+    toast.success("Код скопирован в буфер обмена");
+  };
 
   const t = useTranslations("Dashboard");
   const messages = [t("title"), t("title2"), t("title3")];
@@ -193,7 +204,7 @@ const DashboardContentFunctionality = (props) => {
           setModelAnswer(data.reverse());
 
           if (props.type === "text" && data.length > 0) {
-            typeEffect(data[data.length - 1].message);
+            setTypedModelAnswer(data[data.length - 1].message);
           }
         }
       } catch (error) {
@@ -298,7 +309,9 @@ const DashboardContentFunctionality = (props) => {
           setModelAnswer(res.data.data.reverse());
           props.type === "text" &&
             res.data.data.length > 0 &&
-            typeEffect(res.data.data[res.data.data.length - 1].message);
+            setTypedModelAnswer(
+              res.data.data[res.data.data.length - 1].message
+            );
         }
         setLoading(false);
       })
@@ -362,7 +375,9 @@ const DashboardContentFunctionality = (props) => {
           setModelAnswer(res.data.data.reverse());
           props.type === "text" &&
             res.data.data.length > 0 &&
-            typeEffect(res.data.data[res.data.data.length - 1].message);
+            setTypedModelAnswer(
+              res.data.data[res.data.data.length - 1].message
+            );
         }
         setLoading(false);
       })
@@ -510,10 +525,54 @@ const DashboardContentFunctionality = (props) => {
                         </div>
                         <div className="modelAnswerMsg">
                           {props.type === "text" && (
-                            <ReactMarkdown>
+                            <ReactMarkdown
+                              components={{
+                                code({
+                                  node,
+                                  inline,
+                                  className,
+                                  children,
+                                  ...props
+                                }) {
+                                  const match = /language-(\w+)/.exec(
+                                    className || ""
+                                  );
+                                  return !inline && match ? (
+                                    <div className="relative">
+                                      <button
+                                        onClick={() =>
+                                          handleCopyCode(children.toString())
+                                        }
+                                        className="absolute top-2 right-2 bg-gray-700 text-white p-1 rounded text-sm"
+                                      >
+                                        📋 Копировать
+                                      </button>
+                                      <pre>
+                                        <code
+                                          className={`hljs ${className}`}
+                                          {...props}
+                                          dangerouslySetInnerHTML={{
+                                            __html: hljs.highlight(
+                                              children.toString(),
+                                              {
+                                                language: match[1],
+                                              }
+                                            ).value,
+                                          }}
+                                        />
+                                      </pre>
+                                    </div>
+                                  ) : (
+                                    <code className={className} {...props}>
+                                      {children}
+                                    </code>
+                                  );
+                                },
+                              }}
+                            >
                               {index === modelAnswer.length - 1
                                 ? typedModelAnswer
-                                : item.message}
+                                : modelAnswer[index].message}
                             </ReactMarkdown>
                           )}
 
