@@ -18,7 +18,7 @@ const ProductDetails = ({
     <div className="rounded-lg bg-transparent p-4 pt-0">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-2xl font-bold text-text">{product.title}</h2>
-        <button onClick={onClose} className="lg:hidden">
+        <button name="close" onClick={onClose} className="lg:hidden">
           <X className="h-6 w-6 text-text" />
         </button>
       </div>

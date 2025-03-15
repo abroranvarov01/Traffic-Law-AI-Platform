@@ -45,6 +45,7 @@ const SideBar = () => {
       <div className="sideBarHeader">
         <div className={`helpButtons ${theme === "light" ? "light" : ""}`}>
           <button
+            name="Enix AI"
             className="sideBarLink"
             title="Enix AI"
             onClick={() => {
@@ -54,6 +55,7 @@ const SideBar = () => {
             <Image src="/images/logo.png" alt="albums" width="25" height="25" />
           </button>
           <button
+            name="Yangi so'rov yarating"
             title="Yangi so'rov yarating"
             onClick={() => {
               router.push("/");
@@ -97,7 +99,7 @@ const SideBar = () => {
             router.replace("/dashboard");
           }}
         >
-           <CirclePlus color="white" size={25} />
+          <CirclePlus color="white" size={25} />
           <h3 className="sideBarLinkLabel">{t("newChat")}</h3>
           <div className="hoverEffectIcon">
             <Image
@@ -207,6 +209,7 @@ const SideBar = () => {
         <ThemeToggle />
         <LanguageSwitcher theme={theme === "light" ? "light" : ""} />
         <button
+          name="exit"
           className="sideBarLink exitButton"
           href={"https://enix.uz/"}
           onClick={() => {

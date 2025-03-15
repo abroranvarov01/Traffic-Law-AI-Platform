@@ -32,6 +32,7 @@ const ThemeToggle: React.FC = () => {
 
   return (
     <button
+      name="themeToggle"
       className={`sideBarLink ${theme === "light" ? "light" : ""} `}
       onClick={toggleTheme}
     >

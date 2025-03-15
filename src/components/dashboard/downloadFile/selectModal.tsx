@@ -45,7 +45,11 @@ const MyDocument = ({ text }: { text: string }) => (
   </Document>
 );
 
-export const DownloadButton = ({ text, isOpen, setIsOpen }: DownloadButtonProps) => {
+export const DownloadButton = ({
+  text,
+  isOpen,
+  setIsOpen,
+}: DownloadButtonProps) => {
   const t = useTranslations("Dashboard");
   const [cookiesTheme] = useCookies(["theme"]);
   const [theme, setTheme] = useState("dark");
@@ -61,7 +65,10 @@ export const DownloadButton = ({ text, isOpen, setIsOpen }: DownloadButtonProps)
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -120,6 +127,7 @@ export const DownloadButton = ({ text, isOpen, setIsOpen }: DownloadButtonProps)
         <div className="absolute mt-1.5 w-44 bg-background-header rounded-[10px] shadow-lg border border-gray-700/50 overflow-hidden z-50">
           <div className="p-1">
             <button
+              name="close"
               onClick={downloadPdf}
               className="flex items-center gap-2 w-full px-2 py-1.5 text-gray-300 hover:bg-gray-700/40 rounded-sm transition-all duration-150"
             >
@@ -127,11 +135,14 @@ export const DownloadButton = ({ text, isOpen, setIsOpen }: DownloadButtonProps)
                 <BoxIcon size={14} />
               </div>
               <div className="text-left flex-1 min-w-0">
-                <div className="text-[11px] font-medium text-gray-200 truncate">PDF</div>
+                <div className="text-[11px] font-medium text-gray-200 truncate">
+                  PDF
+                </div>
               </div>
             </button>
 
             <button
+              name="close"
               onClick={downloadWord}
               className="flex items-center gap-2 w-full px-2 py-1.5 text-gray-300 hover:bg-gray-700/40 rounded-sm transition-all duration-150"
             >
@@ -139,11 +150,14 @@ export const DownloadButton = ({ text, isOpen, setIsOpen }: DownloadButtonProps)
                 <FileText size={14} />
               </div>
               <div className="text-left flex-1 min-w-0">
-                <div className="text-[11px] font-medium text-gray-200 truncate">Word</div>
+                <div className="text-[11px] font-medium text-gray-200 truncate">
+                  Word
+                </div>
               </div>
             </button>
 
             <button
+              name="close"
               onClick={downloadTxt}
               className="flex items-center gap-2 w-full px-2 py-1.5 text-gray-300 hover:bg-gray-700/40 rounded-sm transition-all duration-150"
             >
@@ -151,7 +165,9 @@ export const DownloadButton = ({ text, isOpen, setIsOpen }: DownloadButtonProps)
                 <FileIcon size={14} />
               </div>
               <div className="text-left flex-1 min-w-0">
-                <div className="text-[11px] font-medium text-gray-200 truncate">Text</div>
+                <div className="text-[11px] font-medium text-gray-200 truncate">
+                  Text
+                </div>
               </div>
             </button>
           </div>

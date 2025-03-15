@@ -101,7 +101,7 @@ const MobileMenu = () => {
             <h3 className="userDownMenuHeaderLabel">{t("profile")}</h3>
           </div>
 
-          <button onClick={() => setOpenLogoMenu(!openLogoMenu)}>
+          <button name="close" onClick={() => setOpenLogoMenu(!openLogoMenu)}>
             <Image
               src="/images/closeIcon.svg"
               alt="close"
@@ -235,6 +235,7 @@ const MobileMenu = () => {
                   Вы использовали 80% бесплатных сообщений. Нужно больше?
                 </p>
                 <button
+                  name="upgrade"
                   onClick={() => router.push("/prices")}
                   className="planUpgradeButton"
                 >
@@ -265,6 +266,7 @@ const MobileMenu = () => {
                 </div>
               </div>
               <button
+                name="exit"
                 onClick={() => {
                   removeCookie("secretToken");
                   window.location.href = `/${locale}/signin`;

@@ -7,6 +7,7 @@ const ArtileCard = ({ title, date, quote, description }: ArticleType) => {
   const t = useTranslations("Articles");
   return (
     <button
+      name="articleCard"
       style={{ border: "1px solid #FFFFFF1A" }}
       className="hidden flex-col items-start gap-2 rounded-[8px]  p-3 text-left text-sm transition-all hover:bg-background-hover  lg:flex"
     >

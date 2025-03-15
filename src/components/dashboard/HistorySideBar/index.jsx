@@ -56,12 +56,10 @@ const HistorySideBar = (props) => {
       })
       .catch((err) => {
         console.error(err);
-        removeCookie("secretToken");
-        router.push("/signin");
       });
   };
 
-  const deleteChat = ( chatId) => {
+  const deleteChat = (chatId) => {
     axios
       .delete(process.env.NEXT_PUBLIC_APP_API_URL + "/chat/" + chatId, {
         headers: {
@@ -104,7 +102,7 @@ const HistorySideBar = (props) => {
             <History />
             <h3 className="userDownMenuHeaderTitle">{t("chatHistory")}</h3>
           </div>
-          <button onClick={() => setOpenUserMenu(!openUserMenu)}>
+          <button name="close" onClick={() => setOpenUserMenu(!openUserMenu)}>
             <Image
               src="/images/closeIcon.svg"
               alt="close"
@@ -136,6 +134,7 @@ const HistorySideBar = (props) => {
                     }}
                   >
                     <button
+                    name="delete"
                       onClick={(event) => {
                         event.preventDefault();
                         event.stopPropagation();

@@ -166,6 +166,7 @@ const Payment: React.FC = () => {
         <div className="mx-auto max-w-2xl px-4">
           <nav className="mb-8">
             <button
+            name="back"
               onClick={() => router.push("/prices")}
               className="flex items-center text-sm text-gray-500 hover:text-gray-700"
             >
@@ -294,6 +295,7 @@ const Payment: React.FC = () => {
                   </div>
 
                   <button
+                  name="submit"
                     type="submit"
                     className="w-full rounded-md bg-[#10A37F] py-3 text-white hover:bg-[#1A7F64] transition-colors mt-auto"
                   >
@@ -319,6 +321,7 @@ const Payment: React.FC = () => {
                   </div>
 
                   <button
+                  name="submit"
                     type="submit"
                     className="w-full rounded-md bg-[#10A37F] py-3 text-white hover:bg-[#1A7F64] transition-colors mt-auto"
                   >

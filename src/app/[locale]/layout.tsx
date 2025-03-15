@@ -9,9 +9,9 @@ import "./globals.css";
 import ContextProvider from "@/providers/contextProvider";
 
 export const metadata: Metadata = {
-  title: "ENIX AI Assistent",
+  title: "Enix Assistent",
   description:
-    "ENIX AI Assistant — aqlli va tez yordamchi, salqin vibe bilan. Savollarga javob beradi, vazifalarga yordam beradi va hayotni osonlashtiradi. 🚀",
+    "Enix Assistant — aqlli va tez yordamchi, salqin vibe bilan. Savollarga javob beradi, vazifalarga yordam beradi va hayotni osonlashtiradi. 🚀",
 };
 const rubik = Rubik({ subsets: ['latin', 'cyrillic'], weight: ['400', '700'] });
 
@@ -36,7 +36,7 @@ export default async function RootLayout({
       <html lang={locale} className={rubik.className}>
         <head>
           <link rel="icon" href="/favicon.png" sizes="any" />
-          <title>ENIX AI Assistent</title>
+          <title>Enix AI Assistent</title>
         </head>
         <body>
           <NextIntlClientProvider messages={messages}>

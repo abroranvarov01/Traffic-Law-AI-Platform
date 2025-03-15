@@ -11,10 +11,10 @@ const QuestionsContent = () => {
   const toggleSection = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
-  
+
   return (
     <main className="QuestionsContentMain">
-      <button className="backButton" onClick={() => router.back()}>
+      <button name="back" className="backButton" onClick={() => router.back()}>
         <ArrowLeft className="mr-2 h-4 w-4" />
         {t("Back")}
       </button>
@@ -25,25 +25,33 @@ const QuestionsContent = () => {
             <div className="divider"></div>
           </div>
           <div className="sections">
-            {t.raw("questions").map((section: { title: string; content: string }, index: number) => (
-              <div
-                key={index}
-                className={`section ${openIndex === index ? "open" : ""}`}
-              >
-                <button
-                  className="sectionHeader"
-                  onClick={() => toggleSection(index)}
-                >
-                  <span className="icon">
-                    {openIndex === index ? <Minus /> : <Plus />}
-                  </span>
-                  {section.title}
-                </button>
-                <div className="sectionContent">
-                  <div>{section.content}</div>
-                </div>
-              </div>
-            ))}
+            {t
+              .raw("questions")
+              .map(
+                (
+                  section: { title: string; content: string },
+                  index: number
+                ) => (
+                  <div
+                    key={index}
+                    className={`section ${openIndex === index ? "open" : ""}`}
+                  >
+                    <button
+                      name="sectionHeader"
+                      className="sectionHeader"
+                      onClick={() => toggleSection(index)}
+                    >
+                      <span className="icon">
+                        {openIndex === index ? <Minus /> : <Plus />}
+                      </span>
+                      {section.title}
+                    </button>
+                    <div className="sectionContent">
+                      <div>{section.content}</div>
+                    </div>
+                  </div>
+                )
+              )}
           </div>
         </div>
       </div>

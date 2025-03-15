@@ -123,7 +123,7 @@ export function LoginForm({
             <div className="flex items-center justify-center w-12 h-12 rounded-3xl bg-[#27272A]">
               <Image src="/images/logo.png" alt="Enix" width={25} height={25} />
             </div>
-            ENIX AI
+            Enix AI
           </div>
           <div className={cn("flex  flex-col gap-6", className)} {...props}>
             <Card className="bg-black border-[#27272A]">
@@ -141,6 +141,7 @@ export function LoginForm({
                   <div className="grid gap-6">
                     <div className="flex flex-col gap-4">
                       <Button
+                        name="close"
                         type="button"
                         variant="outline"
                         className="authFormLang w-full bg-black border-[#27272A] text-white hover:bg-[#27272A] hover:text-white"
@@ -181,6 +182,7 @@ export function LoginForm({
                             required
                           />
                           <button
+                            name="close"
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
                             className="absolute inset-y-0 right-3 flex items-center text-gray-400 hover:text-white"
@@ -214,7 +216,7 @@ export function LoginForm({
               </CardContent>
             </Card>
             {/* <div className="text-balance text-center text-xs text-white [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary">
-              © ENIX & Phoenix Core Lab 2025
+              © Enix & Phoenix Core Lab 2025
             </div> */}
           </div>
         </div>

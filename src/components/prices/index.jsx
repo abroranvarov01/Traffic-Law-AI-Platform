@@ -40,6 +40,7 @@ export default function Prices() {
         className={`min-h-screen bg-background-prices text-text pt-6 pb-12 px-4`}
       >
         <button
+          name="Orqaga"
           onClick={() => router.push("/")}
           className="flex items-center text-sm text-gray-500 hover:text-gray-700 mb-8"
         >
@@ -74,6 +75,7 @@ export default function Prices() {
                   </div>
                   <p className="mb-8">{t("Free.subtitle")}</p>
                   <button
+                    name="Buy"
                     onClick={() => router.push("/")}
                     className="w-full py-2 px-3 rounded-md bg-gray-600 text-white mb-8"
                   >
@@ -128,6 +130,7 @@ export default function Prices() {
                 </div>
                 <p className="mb-8">{t("Premium.subtitle")}</p>
                 <button
+                  name="Buy"
                   onClick={() => {
                     if (!isActiveUser) {
                       router.push("./payment");
@@ -186,7 +189,10 @@ export default function Prices() {
                   Улучшите работу своей команды с помощью безопасного рабочего
                   пространства для совместной работы
                 </p>
-                <button className="w-full py-3 px-4 rounded-md bg-[#00A67E] text-white mb-8">
+                <button
+                  name="Buy"
+                  className="w-full py-3 px-4 rounded-md bg-[#00A67E] text-white mb-8"
+                >
                   Получить Team
                 </button>
                 <ul className="space-y-4 mb-8">

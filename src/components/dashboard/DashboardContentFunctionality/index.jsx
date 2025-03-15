@@ -43,6 +43,7 @@ import { DownloadButton } from "../downloadFile/selectModal";
 
 const renderButton = (buttonText, index) => (
   <motion.button
+    name="helperButton"
     key={index}
     className="helperButton"
     initial={{ opacity: 0, y: 20 }}
@@ -127,7 +128,6 @@ const DashboardContentFunctionality = (props) => {
   const [isTyping, setIsTyping] = useState(false);
   const typingIntervalRef = useRef(null);
   const chatFieldRef = useRef(null);
-  const [language, setLanguage] = useState("");
   const [cookiesTheme] = useCookies(["theme"]);
   const [theme, setTheme] = useState("dark");
   const [openModalId, setOpenModalId] = useState(null);
@@ -183,7 +183,6 @@ const DashboardContentFunctionality = (props) => {
     async (chatId) => {
       if (!chatId) return;
 
-      if (props.type === "image") setLanguage("uz");
       setShowAnswer(true);
 
       try {
@@ -296,7 +295,7 @@ const DashboardContentFunctionality = (props) => {
           chat_title: "",
           message: formElements.message.value,
           message_type: props.type,
-          language: language,
+          language: "ru",
         },
         {
           headers: {
@@ -362,7 +361,7 @@ const DashboardContentFunctionality = (props) => {
         {
           message_type: props.type,
           message: formElements.message.value,
-          language: language,
+          language: "ru",
         },
         {
           headers: {
@@ -449,10 +448,6 @@ const DashboardContentFunctionality = (props) => {
   }, []);
 
   useEffect(() => {
-    setLanguage(cookies.modelAnswerLanguage || "");
-  }, [cookies]);
-
-  useEffect(() => {
     scrollDownWhenAnswer();
   }, [loading]);
 
@@ -460,13 +455,6 @@ const DashboardContentFunctionality = (props) => {
     getChatByChatId(props.chatId);
   }, [getChatByChatId, props.chatId]);
 
-  const changeLanguage = () => {
-    const languages = ["ru", "uz", "en"];
-    const currentIndex = languages.indexOf(language);
-    const newLanguage = languages[(currentIndex + 1) % languages.length];
-    setCookie("modelAnswerLanguage", newLanguage);
-    setLanguage(newLanguage);
-  };
   const assistentSubmit = (role) => {
     role;
   };
@@ -475,7 +463,7 @@ const DashboardContentFunctionality = (props) => {
     <div className="dashboardContentFunctionality">
       <ToastContainer theme="dark" pauseOnHover={false} />
       <AnimatePresence>
-        {showAnswer && language && (
+        {showAnswer && (
           <motion.div
             key="chatBox"
             initial={{ opacity: 0, y: 20 }}
@@ -503,6 +491,7 @@ const DashboardContentFunctionality = (props) => {
                   >
                     {item.from_user ? (
                       <button
+                        name="edit"
                         onClick={() => setMessage(item.message)}
                         className={`userMessageEdit ${
                           theme === "light" ? "light" : ""
@@ -540,6 +529,7 @@ const DashboardContentFunctionality = (props) => {
                                   return !inline && match ? (
                                     <div className="relative">
                                       <button
+                                        name="copy"
                                         onClick={() =>
                                           handleCopyCode(children.toString())
                                         }
@@ -692,7 +682,7 @@ const DashboardContentFunctionality = (props) => {
         )}
       </AnimatePresence>
 
-      {!showAnswer && language && (
+      {!showAnswer && (
         <>
           <motion.h3
             className="contentHeader"
@@ -749,112 +739,73 @@ const DashboardContentFunctionality = (props) => {
         </div>
       )}
 
-      {language && (
-        <motion.div
-          key="textForm"
-          initial={{ y: !showAnswer ? 0 : 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-          className={`textForm ${theme === "light" ? "light" : ""} ${
-            showAnswer ? "answer" : ""
-          }`}
-        >
-          {showAnswer && (
-            <button
-              className="newchat"
-              onClick={() => router.replace("/dashboard")}
-            >
-              <RefreshCw className="icon" />
-              <span className="text">{t("newChat")}</span>
-            </button>
-          )}
-          <form
-            id="textFormModel"
-            onSubmit={(e) =>
-              showAnswer ? handleGetUpdatedResult(e) : handleGetResult(e)
-            }
+      <motion.div
+        key="textForm"
+        initial={{ y: !showAnswer ? 0 : 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
+        className={`textForm ${theme === "light" ? "light" : ""} ${
+          showAnswer ? "answer" : ""
+        }`}
+      >
+        {showAnswer && (
+          <button
+            name="newchat"
+            className="newchat"
+            onClick={() => router.replace("/dashboard")}
           >
-            <motion.textarea
-              ref={textareaRef}
-              value={message}
-              rows={2}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-              className={`textInput`}
-              placeholder={t("title3")}
+            <RefreshCw className="icon" />
+            <span className="text">{t("newChat")}</span>
+          </button>
+        )}
+        <form
+          id="textFormModel"
+          onSubmit={(e) =>
+            showAnswer ? handleGetUpdatedResult(e) : handleGetResult(e)
+          }
+        >
+          <motion.textarea
+            ref={textareaRef}
+            value={message}
+            rows={2}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+            className={`textInput`}
+            placeholder={t("title3")}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
+            name="message"
+            onKeyDown={handleSendOnEnter}
+          />
+
+          {isTyping || loading ? (
+            <button
+              name="stop"
+              className={`sendButton ${theme === "light" ? "light" : ""}`}
+              type="button"
+              onClick={() => stopTyping()}
+            >
+              <Image src="/images/stop.svg" alt="send" width={40} height={40} />
+            </button>
+          ) : (
+            <motion.button
+              name="send"
+              className={`sendButton ${theme === "light" ? "light" : ""}`}
+              type="submit"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-              name="message"
-              onKeyDown={handleSendOnEnter}
-            />
-            <div className="languageSwitcher">
-              <button
-                type="button"
-                className="languageSwitcherButton"
-                title="На каком языке мне к вам обращаться?"
-                onClick={() => {
-                  changeLanguage();
-                }}
-              >
-                <Image
-                  src={
-                    language === "ru"
-                      ? "/images/russia.svg"
-                      : language === "uz"
-                      ? "/images/uzbekistan.svg"
-                      : "/images/greatbritain.svg"
-                  }
-                  alt="language"
-                  width={40}
-                  height={40}
-                />
-              </button>
-              <p className="languageSwitcherText">
-                {language === "ru"
-                  ? "Ответ на русском"
-                  : language === "uz"
-                  ? "Javob o'zbekcha"
-                  : "Answer on English"}
-              </p>
-            </div>
-
-            {isTyping || loading ? (
-              <button
-                className={`sendButton ${theme === "light" ? "light" : ""}`}
-                type="button"
-                onClick={() => stopTyping()}
-              >
-                <Image
-                  src="/images/stop.svg"
-                  alt="send"
-                  width={40}
-                  height={40}
-                />
-              </button>
-            ) : (
-              <motion.button
-                className={`sendButton ${theme === "light" ? "light" : ""}`}
-                type="submit"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-                disabled={loading && !isTyping}
-              >
-                <Image
-                  src="/images/send.svg"
-                  alt="send"
-                  width={40}
-                  height={40}
-                />
-              </motion.button>
-            )}
-            {/* <p className="absolute bottom-[17px] right-[50px] text-[14px] text-[#b4b4b4] md:right-[60px]">
+              disabled={loading && !isTyping}
+            >
+              <Image src="/images/send.svg" alt="send" width={40} height={40} />
+            </motion.button>
+          )}
+          {/* <p className="absolute bottom-[17px] right-[50px] text-[14px] text-[#b4b4b4] md:right-[60px]">
               20 / 20
             </p> */}
-          </form>
-        </motion.div>
-      )}
+        </form>
+      </motion.div>
 
       {/* {!showAnswer && language && (
         <>
@@ -890,63 +841,6 @@ const DashboardContentFunctionality = (props) => {
           </div>
         </>
       )} */}
-
-      {!language && (
-        <div className="modelLanguageWrapper">
-          <motion.h3
-            className="contentHeader"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
-          >
-            {t("chooseLang")}
-          </motion.h3>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="modelLanguageContainer"
-          >
-            <div
-              className="languageButton"
-              onClick={() => {
-                setCookie("modelAnswerLanguage", "ru");
-                setLanguage("ru");
-              }}
-            >
-              <div className="languageButtonText">{t("ru")}</div>
-              <div className="flag">
-                <Flag code="RU" />
-              </div>
-            </div>
-            <div
-              className="languageButton"
-              onClick={() => {
-                setCookie("modelAnswerLanguage", "uz");
-                setLanguage("uz");
-              }}
-            >
-              <div className="languageButtonText">{t("uz")}</div>
-              <div className="flag">
-                <Flag code="UZ" />
-              </div>
-            </div>
-            <div
-              className="languageButton"
-              onClick={() => {
-                setCookie("modelAnswerLanguage", "en");
-                setLanguage("en");
-              }}
-            >
-              <div className="languageButtonText">{t("en")}</div>
-              <div className="flag">
-                <Flag code="GB" />
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      )}
     </div>
   );
 };

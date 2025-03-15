@@ -29,6 +29,7 @@ export default function Page() {
       <div className="bg-background-prices w-full">
         <div className="container  mx-auto p-4">
           <button
+            name="back"
             onClick={() => router.push("/")}
             className="flex items-center text-sm text-gray-500 hover:text-gray-700 "
           >
