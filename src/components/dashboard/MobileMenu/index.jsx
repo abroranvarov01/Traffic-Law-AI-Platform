@@ -73,6 +73,8 @@ const MobileMenu = () => {
         setUser(data);
       } catch (error) {
         console.error("Ошибка при запросе:", error);
+        removeCookie("secretToken");
+        router.push("/signin");
       }
     };
 
