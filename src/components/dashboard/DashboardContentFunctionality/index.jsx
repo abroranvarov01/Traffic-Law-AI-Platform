@@ -5,7 +5,7 @@ import { useRef, useCallback } from "react";
 import "./index.scss";
 import Image from "next/image";
 import { useRouter } from "@/i18n/routing";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCookies } from "react-cookie";
@@ -433,6 +433,8 @@ const DashboardContentFunctionality = (props) => {
     return () => clearTimeout(timer);
   }, [currentMessage, isDeleting, loopIndex, typingSpeed]);
 
+  const memoizedMessage = useMemo(() => currentMessage, [currentMessage]);
+
   useEffect(() => {
     if (!isUserScrolling && !isTyping) {
       scrollDownWhenAnswer();
@@ -690,7 +692,7 @@ const DashboardContentFunctionality = (props) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
           >
-            {currentMessage}
+            {memoizedMessage}
           </motion.h3>
         </>
       )}
@@ -705,7 +707,7 @@ const DashboardContentFunctionality = (props) => {
             onClick={() => router.push("/dashboard/text")}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <div
               className={`chosenModelIcon ${theme === "light" ? "light" : ""}`}
@@ -724,7 +726,7 @@ const DashboardContentFunctionality = (props) => {
             onClick={() => router.push("/dashboard/image")}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.8, 0.5, 1] }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <div
               className={`chosenModelIcon ${theme === "light" ? "light" : ""}`}
