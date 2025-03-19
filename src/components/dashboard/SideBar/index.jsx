@@ -48,9 +48,9 @@ const SideBar = () => {
             name="Enix AI"
             className="sideBarLink"
             title="Enix AI"
-            onClick={() => {
-              router.push("/");
-            }}
+            // onClick={() => {
+            //   router.push("/");
+            // }}
           >
             <Image src="/images/logo.png" alt="albums" width="25" height="25" />
           </button>
@@ -96,7 +96,7 @@ const SideBar = () => {
             theme === "light" ? "light" : ""
           } cursor-pointer `}
           onClick={() => {
-            router.replace("/dashboard");
+            router.replace("/");
           }}
         >
           <CirclePlus color="white" size={25} />

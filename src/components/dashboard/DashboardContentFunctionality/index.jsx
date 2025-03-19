@@ -38,8 +38,11 @@ import {
   Sparkles,
   MessagesSquare,
   ImagePlus,
+  ThumbsUp,
+  ThumbsDown,
 } from "lucide-react";
 import { DownloadButton } from "../downloadFile/selectModal";
+import { Modal } from "@/components/ui/modal";
 
 const renderButton = (buttonText, index) => (
   <motion.button
@@ -134,6 +137,8 @@ const DashboardContentFunctionality = (props) => {
   const [message, setMessage] = useState("");
   const textareaRef = useRef(null);
   const [isUserScrolling, setIsUserScrolling] = useState(false);
+  const [status, setStatus] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Автоувеличение высоты при изменении текста
   useEffect(() => {
@@ -169,7 +174,6 @@ const DashboardContentFunctionality = (props) => {
       }
     }, 1);
   };
-
   const handleUserScroll = () => {
     setIsUserScrolling(true);
     clearTimeout(typingIntervalRef.current);
@@ -460,9 +464,18 @@ const DashboardContentFunctionality = (props) => {
   const assistentSubmit = (role) => {
     role;
   };
+  const handleLike = () => {
+    setStatus(status === "like" ? null : "like");
+  };
+
+  const handleDislike = () => {
+    setStatus(status === "dislike" ? null : "dislike");
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="dashboardContentFunctionality">
+      <Modal modalOpen={isModalOpen} setModalOpen={setIsModalOpen} />
       <ToastContainer theme="dark" pauseOnHover={false} />
       <AnimatePresence>
         {showAnswer && (
@@ -643,20 +656,92 @@ const DashboardContentFunctionality = (props) => {
                                       text={item.message}
                                     />
                                   </div>
+                                  <div
+                                    onClick={() => handleLike()}
+                                    className={`copyItem ${
+                                      theme == "light" ? "light" : ""
+                                    }`}
+                                  >
+                                    <ThumbsUp
+                                      height={15}
+                                      width={15}
+                                      fill={
+                                        status === "like"
+                                          ? "white"
+                                          : "transparent"
+                                      }
+                                    />
+                                  </div>
+                                  <button
+                                    disabled={status === "dislike"}
+                                    onClick={() => handleDislike()}
+                                    className={`copyItem ${
+                                      theme == "light" ? "light" : ""
+                                    }`}
+                                  >
+                                    <ThumbsDown
+                                      height={15}
+                                      width={15}
+                                      fill={
+                                        status === "dislike"
+                                          ? "white"
+                                          : "transparent"
+                                      }
+                                    />
+                                  </button>
                                 </>
                               ) : item.file_url &&
                                 item.file_url !== "no.png" ? (
-                                <div className="copyItem">
-                                  <Image
-                                    src="/images/download.svg"
-                                    alt="download"
-                                    width={20}
-                                    height={20}
-                                    onClick={() =>
-                                      handleDownload(item.file_url)
-                                    }
-                                  />
-                                </div>
+                                <>
+                                  <div
+                                    className={`copyItem ${
+                                      theme === "light" ? "light" : ""
+                                    }`}
+                                  >
+                                    <Image
+                                      src="/images/download.svg"
+                                      alt="download"
+                                      width={20}
+                                      height={20}
+                                      onClick={() =>
+                                        handleDownload(item.file_url)
+                                      }
+                                    />
+                                  </div>
+                                  <div
+                                    onClick={() => handleLike()}
+                                    className={`copyItem ${
+                                      theme == "light" ? "light" : ""
+                                    }`}
+                                  >
+                                    <ThumbsUp
+                                      height={15}
+                                      width={15}
+                                      fill={
+                                        status === "like"
+                                          ? "white"
+                                          : "transparent"
+                                      }
+                                    />
+                                  </div>
+                                  <button
+                                    disabled={status === "dislike"}
+                                    onClick={() => handleDislike()}
+                                    className={`copyItem ${
+                                      theme == "light" ? "light" : ""
+                                    }`}
+                                  >
+                                    <ThumbsDown
+                                      height={15}
+                                      width={15}
+                                      fill={
+                                        status === "dislike"
+                                          ? "white"
+                                          : "transparent"
+                                      }
+                                    />
+                                  </button>
+                                </>
                               ) : null}
                             </div>
                           )}
@@ -754,7 +839,10 @@ const DashboardContentFunctionality = (props) => {
           <button
             name="newchat"
             className="newchat"
-            onClick={() => router.replace("/dashboard")}
+            onClick={() => {
+              console.log("Кнопка нажата");
+              router.replace("/");
+            }}
           >
             <RefreshCw className="icon" />
             <span className="text">{t("newChat")}</span>

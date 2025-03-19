@@ -58,7 +58,6 @@ const MobileMenu = () => {
   React.useEffect(() => {
     document.body.classList.toggle("light", theme === "light");
   }, [theme]);
-  console.log(activeUser, "activeUSer");
 
   React.useEffect(() => {
     const fetchData = async () => {

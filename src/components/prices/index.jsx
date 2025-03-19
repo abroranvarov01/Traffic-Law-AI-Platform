@@ -16,7 +16,6 @@ export default function Prices() {
   const theme = cookiesTheme.theme || "dark"; // Значение по умолчанию
 
   useEffect(() => {
-    console.log("Текущая тема:", theme);
     document.body.classList.toggle("light", theme === "light");
   }, [theme]);
 
