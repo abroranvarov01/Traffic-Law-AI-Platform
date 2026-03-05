@@ -8,7 +8,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "api.enix.uz",
+        hostname: "api.ai.uz",
       },
       {
         protocol: "https",

@@ -246,7 +246,7 @@ export default function Prices() {
               href="https://t.me/timur_ktr"
               className="text-[#00A67E] hover:underline"
             >
-              См. Enix Enterprise
+              См. ai Enterprise
             </Link>
           </div>
         </div>

@@ -18,6 +18,7 @@ export default {
           main: "hsl(var(--main-background))",
           prices: "hsl(var(--prices-background))",
           header: "hsl(var(--header-background))",
+		  chatLogo: "hsl(var(--chat-logo-background))",
         },
         borderColor: {
           prices: "hsl(var(--border-color))",

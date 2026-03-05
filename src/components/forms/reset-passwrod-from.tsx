@@ -117,9 +117,9 @@ export function ResetPasswordForm({
         <div className="flex w-full max-w-sm flex-col gap-2">
           <div className="flex items-center gap-2 self-center font-medium text-white mb-4 text-2xl">
             <div className="flex items-center justify-center w-12 h-12 rounded-3xl bg-[#27272A]">
-              <Image src="/images/logo.png" alt="Enix" width={25} height={25} />
+              <Image src="/images/logo.png" alt="ai" width={25} height={25} />
             </div>
-            Enix AI
+            ai AI
           </div>
           <div className={cn("flex  flex-col gap-4", className)} {...props}>
             <Card className="bg-black border-[#27272A]">

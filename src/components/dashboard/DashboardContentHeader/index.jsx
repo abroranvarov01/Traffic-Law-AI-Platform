@@ -41,7 +41,7 @@ const DashboardContentHeader = () => {
       className={`DashboardContentHeader ${theme === "light" ? "light" : ""}`}
     >
       <div
-        className="enixUserMenu"
+        className="aiUserMenu"
         onClick={() => {
           setOpenUserMenu(!openUserMenu);
           setOpenLogoMenu(false);
@@ -49,17 +49,17 @@ const DashboardContentHeader = () => {
       >
         <div className={`logo ${theme === "light" ? "light" : ""}`}>
           {/* <Image
-            className="logoEnix"
+            className="logoai"
             src="/images/history.svg"
-            alt="Enix"
+            alt="ai"
             width={100}
             height={100}
           /> */}
-          <History className="logoEnix" color={`${theme === "light" ? "black" : "white"}`} />
+          <History className="logoai" color={`${theme === "light" ? "black" : "white"}`} />
           <Image
-            className="logoChatEnixArrow"
+            className="logoChataiArrow"
             src="/images/chevron-down.svg"
-            alt="logoChatEnixArrow"
+            alt="logoChataiArrow"
             width={15}
             height={15}
           />
@@ -92,7 +92,7 @@ const DashboardContentHeader = () => {
       </div>
       <div
         ref={logoMenuRef}
-        className="enixLogoMenu"
+        className="aiLogoMenu"
         onClick={() => {
           setOpenLogoMenu(!openLogoMenu);
           setOpenUserMenu(false);
@@ -100,16 +100,16 @@ const DashboardContentHeader = () => {
       >
         <div className={`logo ${theme === "light" ? "light" : ""}`}>
           <Image
-            className="logoEnixArrow"
+            className="logoaiArrow"
             src="/images/chevron-down.svg"
-            alt="logoEnixArrow"
+            alt="logoaiArrow"
             width={15}
             height={15}
           />
           <Image
-            className="logoEnix"
+            className="logoai"
             src="/images/logo.png"
-            alt="Enix"
+            alt="ai"
             width={100}
             height={100}
           />

@@ -9,15 +9,15 @@
   justify-content: space-between;
   align-items: center;
 
-  .logoChatEnixArrow {
+  .logoChataiArrow {
     transform: rotate(-90deg);
   }
 
-  .logoEnixArrow {
+  .logoaiArrow {
     transform: rotate(90deg);
   }
 
-  .enixLogoMenu {
+  .aiLogoMenu {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +39,7 @@
       }
     }
 
-    .logoEnix {
+    .logoai {
       width: 25px;
       height: 25px;
       transform: rotate(90deg);
@@ -59,7 +59,7 @@
     }
   }
 
-  .enixUserMenu {
+  .aiUserMenu {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,7 +81,7 @@
       }
     }
 
-    .logoEnix {
+    .logoai {
       width: 25px;
       height: 25px;
     }

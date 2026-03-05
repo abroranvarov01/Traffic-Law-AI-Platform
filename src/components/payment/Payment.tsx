@@ -17,7 +17,7 @@ interface ApiErrorResponse {
   message?: string;
 }
 
-const BASE_URL = "https://api.enix.uz";
+const BASE_URL = "https://api.ai.uz";
 
 const API_PATHS = {
   clickCard: `${BASE_URL}/click/card`,
@@ -190,7 +190,7 @@ const Payment: React.FC = () => {
               <div className="rounded-lg bg-white p-6 shadow-sm">
                 <div className="flex justify-between border-b pb-4">
                   <div>
-                    <div className="font-medium">Enix Premium Subscription</div>
+                    <div className="font-medium">ai Premium Subscription</div>
                     <div className="text-sm text-gray-500">
                       {t("title1Text")}
                     </div>

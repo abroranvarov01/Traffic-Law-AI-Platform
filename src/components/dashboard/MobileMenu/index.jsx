@@ -73,7 +73,7 @@ const MobileMenu = () => {
       } catch (error) {
         console.error("Ошибка при запросе:", error);
         removeCookie("secretToken");
-        router.push("/signin");
+        // router.push("/signin");
       }
     };
 
@@ -134,7 +134,7 @@ const MobileMenu = () => {
           </Link>
           <Link
             className={`sideBarLink ${theme === "light" ? "light" : ""}`}
-            href={"https://enix.uz/"}
+            href={"https://ai.uz/"}
             onClick={() => setOpenLogoMenu(!openLogoMenu)}
           >
             <Icon iconNode={planet} color="white" size={25} />

@@ -45,14 +45,19 @@ const SideBar = () => {
       <div className="sideBarHeader">
         <div className={`helpButtons ${theme === "light" ? "light" : ""}`}>
           <button
-            name="Enix AI"
+            name="ai AI"
             className="sideBarLink"
-            title="Enix AI"
+            // title="ai AI"
             // onClick={() => {
             //   router.push("/");
             // }}
           >
-            <Image src="/images/logo.png" alt="albums" width="25" height="25" />
+            <Image
+              src={`${theme === "light" ? "/images/logo-white.png" : "/images/logo.png"}`}
+              alt="albums"
+              width="25"
+              height="80"
+            />
           </button>
           <button
             name="Yangi so'rov yarating"
@@ -72,7 +77,7 @@ const SideBar = () => {
         </div>
         <Link
           className={`sideBarLink ${theme === "light" ? "light" : ""} `}
-          href={"https://enix.uz/"}
+          href={"https://ai.uz/"}
         >
           {/* <Image
             src="/images/planet.svg"
@@ -171,7 +176,7 @@ const SideBar = () => {
             />
           </div>
         </Link>
-        {/* <Link className="sideBarLink" href={"https://enix.uz/"}>
+        {/* <Link className="sideBarLink" href={"https://ai.uz/"}>
           <Image src="/images/pulse.svg" alt="website" width="25" height="25" />
           <h3 className="sideBarLinkLabel">Работа с аудио</h3>
           <div className="hoverEffectIcon">
@@ -211,7 +216,7 @@ const SideBar = () => {
         <button
           name="exit"
           className="sideBarLink exitButton"
-          href={"https://enix.uz/"}
+          href={"https://ai.uz/"}
           onClick={() => {
             removeCookie("secretToken");
             window.location.href = `/${locale}/signin`;

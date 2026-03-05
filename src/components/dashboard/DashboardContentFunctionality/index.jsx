@@ -57,7 +57,7 @@ const renderButton = (buttonText, index) => (
       form.elements.message.value = buttonText;
       e.preventDefault();
       form.dispatchEvent(
-        new Event("submit", { cancelable: true, bubbles: true })
+        new Event("submit", { cancelable: true, bubbles: true }),
       );
     }}
   >
@@ -179,7 +179,7 @@ const DashboardContentFunctionality = (props) => {
     clearTimeout(typingIntervalRef.current);
     typingIntervalRef.current = setTimeout(
       () => setIsUserScrolling(false),
-      2000
+      2000,
     ); // 2 секунды без скролла — автоскролл включается
   };
 
@@ -194,7 +194,7 @@ const DashboardContentFunctionality = (props) => {
           `${process.env.NEXT_PUBLIC_APP_API_URL}/chat/${chatId}`,
           {
             headers: { Authorization: `Bearer ${cookies.secretToken}` },
-          }
+          },
         );
 
         const data = response.data;
@@ -220,7 +220,7 @@ const DashboardContentFunctionality = (props) => {
         typeEffect(errorMessage);
       }
     },
-    [cookies.secretToken]
+    [cookies.secretToken],
   );
 
   const handleDownload = async (modelMessage, id) => {
@@ -269,7 +269,7 @@ const DashboardContentFunctionality = (props) => {
       if (event.target.value.trim() !== "") {
         event.preventDefault();
         event.target.form.dispatchEvent(
-          new Event("submit", { cancelable: true, bubbles: true })
+          new Event("submit", { cancelable: true, bubbles: true }),
         );
       }
     }
@@ -305,7 +305,7 @@ const DashboardContentFunctionality = (props) => {
           headers: {
             Authorization: `Bearer ${cookies.secretToken}`,
           },
-        }
+        },
       )
       .then((res) => {
         if (Array.isArray(res.data?.data)) {
@@ -313,7 +313,7 @@ const DashboardContentFunctionality = (props) => {
           props.type === "text" &&
             res.data.data.length > 0 &&
             setTypedModelAnswer(
-              res.data.data[res.data.data.length - 1].message
+              res.data.data[res.data.data.length - 1].message,
             );
         }
         setLoading(false);
@@ -371,7 +371,7 @@ const DashboardContentFunctionality = (props) => {
           headers: {
             Authorization: `Bearer ${cookies.secretToken}`,
           },
-        }
+        },
       )
       .then((res) => {
         if (Array.isArray(res.data?.data)) {
@@ -379,7 +379,7 @@ const DashboardContentFunctionality = (props) => {
           props.type === "text" &&
             res.data.data.length > 0 &&
             setTypedModelAnswer(
-              res.data.data[res.data.data.length - 1].message
+              res.data.data[res.data.data.length - 1].message,
             );
         }
         setLoading(false);
@@ -519,9 +519,9 @@ const DashboardContentFunctionality = (props) => {
                       item.message
                     ) : (
                       <div className="relative flex gap-4">
-                        <div className="modelAnswerIcon flex items-center justify-center bg-[#2f2f2f] rounded-full w-[30px] h-[30px] p-1 min-w-[30px] min-h-[30px]">
+                        <div className="modelAnswerIcon flex items-center justify-center bg-background-chatLogo rounded-full w-[30px] h-[30px] p-1 min-w-[30px] min-h-[30px]">
                           <Image
-                            src="/images/logo.png"
+                            src={`/images/logo${theme === "light" ? "-white" : ""}.png`}
                             alt="logo"
                             width={15}
                             height={15}
@@ -539,7 +539,7 @@ const DashboardContentFunctionality = (props) => {
                                   ...props
                                 }) {
                                   const match = /language-(\w+)/.exec(
-                                    className || ""
+                                    className || "",
                                   );
                                   return !inline && match ? (
                                     <div className="relative">
@@ -561,7 +561,7 @@ const DashboardContentFunctionality = (props) => {
                                               children.toString(),
                                               {
                                                 language: match[1],
-                                              }
+                                              },
                                             ).value,
                                           }}
                                         />
@@ -650,7 +650,7 @@ const DashboardContentFunctionality = (props) => {
                                         setOpenModalId(
                                           openModalId === item.id
                                             ? null
-                                            : item.id
+                                            : item.id,
                                         )
                                       }
                                       text={item.message}
